@@ -63,12 +63,12 @@
             android:layout_height="40dp"
             android:hint="password"/>
         <Button
-            android:id="@+id/loginRegister_btn"
+            android:id="@+id/loginRegisterBtn"
             app:cornerRadius="25dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="@android:color/holo_red_dark"
             android:textAllCaps="false"
-            android:text="Register"
+            android:text="Login"
             android:textSize="20dp"
             android:layout_width="300dp"
             android:layout_height="55dp"/>

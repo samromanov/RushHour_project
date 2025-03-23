@@ -3795,7 +3795,7 @@ namespace RushHour_project
 			public const int loginBtn = 2131230855;
 			
 			// aapt resource value: 0x7F080088
-			public const int loginRegister_btn = 2131230856;
+			public const int loginRegisterBtn = 2131230856;
 			
 			// aapt resource value: 0x7F080089
 			public const int masked = 2131230857;

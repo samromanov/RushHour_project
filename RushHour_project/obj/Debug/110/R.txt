@@ -1162,7 +1162,7 @@ int id line3 0x7f080084
 int id listMode 0x7f080085
 int id list_item 0x7f080086
 int id loginBtn 0x7f080087
-int id loginRegister_btn 0x7f080088
+int id loginRegisterBtn 0x7f080088
 int id masked 0x7f080089
 int id message 0x7f08008a
 int id middle 0x7f08008b

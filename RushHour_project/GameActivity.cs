@@ -17,7 +17,7 @@ namespace RushHour_project
     [Activity(Label = "GameActivity")]
     public class GameActivity : Activity
     {
-        int chosenLevel;
+        public int CHOSEN_LEVEL;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,25 +26,25 @@ namespace RushHour_project
             SetContentView(Resource.Layout.activity_game);
             Init();
         }
-        void Init()
+        public void Init()
         {
-            chosenLevel = int.Parse(Intent.GetStringExtra("chosenLevel")); // fetch the chosen level number from the intent
+            CHOSEN_LEVEL = int.Parse(Intent.GetStringExtra("chosenLevel")); // fetch the chosen level number from the intent
             //string cars_level_var = "cars_level" + Intent.GetStringExtra("chosenLevel");
-            Level currentLevel = new Level();
+            Level cloned_chosenLevel = new Level();
             foreach (var level in LevelsList.levelsList)
             {
-                if (level.levelNumber == chosenLevel)
+                if (level.levelNumber == CHOSEN_LEVEL)
                 {
-                    currentLevel = level;
+                    cloned_chosenLevel = level.Clone();
                     break;
                 }
             }
 
             //var currentLevel = LevelsList.levelsList[chosenLevel - 1]; // fetch the level from the LevelsList by the chosenLevel
-            currentLevel.PlaceCarsOnBoard();
+            cloned_chosenLevel.PlaceCarsOnBoard();
 
             var grid = FindViewById<GridView>(Resource.Id.boardGrid);
-            grid.Adapter = new BoardAdapter(this, currentLevel.board);
+            grid.Adapter = new BoardAdapter(this, cloned_chosenLevel.board);
 
 
         }

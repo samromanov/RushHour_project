@@ -35,6 +35,12 @@ namespace RushHour_project.Classes
 
         }
 
+        public virtual Level Clone()
+        {
+            List<Car> clonedCars = this.cars.Select(car => car.Clone()).ToList();
+            return new Level(this.difficulty, this.levelNumber, clonedCars);
+        }
+
         public void PlaceCarsOnBoard()
         {
             foreach (var car in this.cars)

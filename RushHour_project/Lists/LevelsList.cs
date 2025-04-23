@@ -100,6 +100,8 @@ namespace RushHour_project.Lists
             new Car('P',0,5,3,false),
             new Car('Q',2,2,3,false)
         };
+
+        // THE LIST of all of the LEVELS
         public static List<Level> levelsList = new List<Level>
         {
             new Beginner(1,1,cars_level1),

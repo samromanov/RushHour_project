@@ -31,49 +31,86 @@ namespace RushHour_project.Classes
         //Purple lorry: P
         //Blue lorry: Q
         //Turquoise lorry: R
-        public char Id { get; set; }  // Unique identifier for each car (
-        public int X { get; set; }   // Top-left X coordinate on the board (0-5)
-        public int Y { get; set; }   // Top-left Y coordinate on the board (0-5)
-        public int Length { get; set; }  // Car length (either 2 or 3 cells)
-        public bool IsHorizontal { get; set; }  // True = horizontal, False = vertical
-        public bool IsRedCar { get; set; }  // Identifies the target car
 
-        public Car(char id, int x, int y, int length, bool isHorizontal, bool isRedCar = false)
+        // Unique identifier (e.g., 'A', 'B', 'R'. 'X' for red car!)
+        public char Id { get; }
+
+        // Position of the car (top-left corner)
+        public int Row { get; set; }  // the row in the rows (up-down)
+        public int Column { get; set; }  // the column in the columns (left-right)
+
+        // Size & movement direction
+        public int Length { get; }  // How many spaces the car occupies
+        public bool IsHorizontal { get; }  // True = left/right, False = up/down
+        public bool IsRedCar { get; }  // If it's the target red car
+
+
+        public Car(char id, int row, int column, int length, bool isHorizontal, bool isRedCar = false)
         {
-            Id = id;
-            X = x;
-            Y = y;
-            Length = length;
-            IsHorizontal = isHorizontal;
-            IsRedCar = isRedCar;
+            this.Id = id;
+            this.Row = row;
+            this.Column = column;
+            this.Length = length;
+            this.IsHorizontal = isHorizontal;
+            this.IsRedCar = isRedCar;
         }
 
-        public bool CanMove(int steps, char[,] board) // steps can be positive or negative
+        public bool CanMove(int dRows, int dColumns, char[,] board)
         {
-            int newX = X, newY = Y;
+            int newRow = this.Row + dRows;
+            int newColumn = this.Column + dColumns;
 
-            if (IsHorizontal)
-                newX += steps;
-            else
-                newY += steps;
-
-            // Ensure the new position is within the board boundaries
-            if (newX < 0 || newY < 0 || (IsHorizontal && newX + Length > 6) || (!IsHorizontal && newY + Length > 6))
-                return false;
-
-            // Check if new position collides with another car
-            for (int i = 0; i < Length; i++)
+            if (this.IsHorizontal)
             {
-                int checkX = IsHorizontal ? newX + i : X; // If the car is horizontal, the X coordinate changes while Y remains the same
-                int checkY = !IsHorizontal ? Y : newY + i; // If the car is vertical, the Y coordinate changes while X remains the same.
+                if (newColumn < 0 || (newColumn + Length) > 6) return false;
+                for (int i = 0; i < Length; i++)
+                    if (board[newRow, newColumn + i] != '.') return false;
 
-                if (board[checkX, checkY] != '0' && board[checkX, checkY] != Id)
-                    return false;
             }
-
+            else // if isHorizontal == false
+            {
+                if (newRow < 0 || (newRow + Length) > 6) return false;
+                for (int i = 0; i < Length; i++)
+                    if (board[newRow + i, newColumn] != '.') return false;
+            }
             return true;
         }
 
+        public void Move(int dRows, int dColumns, char[,] board)
+        {
+            if (CanMove(dRows, dColumns, board))
+            {
+                // Clear old position
+                for (int i = 0; i < Length; i++)
+                {
+                    int oldColumn = IsHorizontal ? Column + i : Column; // if isHorizontal -> oldColumn = column + i, if !isHorizontal -> oldColumn = column
+                    int oldRow = IsHorizontal ? Row : Row + i;
+                    board[oldRow, oldColumn] = '.'; // Mark as empty
+                }
+
+                // Update position
+                Row += dRows;
+                Column += dColumns;
+
+                // Place car in new position
+                for (int i = 0; i < Length; i++)
+                {
+                    int newColumn = IsHorizontal ? Column + i : Column;
+                    int newRow = IsHorizontal ? Row : Row + i;
+                    board[newRow, newColumn] = Id; // Mark car's new position
+                }
+            }
+        }
+
+        public Car Clone()
+        {
+            return new Car(this.Id, this.Row, this.Column, this.Length, this.IsHorizontal,this.IsRedCar);
+        }
+
+        public bool HasExited()
+        {
+            return IsRedCar && (Column + Length >= 6); // If red car reaches right edge
+        }
 
 
 

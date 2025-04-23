@@ -43,13 +43,35 @@ namespace RushHour_project
         {
             if (isLogin)
             {
-                Intent intent = new Intent(this, typeof(MainActivity));
-                StartActivity(intent);
+                if (!_auth_email.Text.Contains("@"))
+                {
+                    Toast.MakeText(this, "An email must contain (@)", ToastLength.Short).Show();
+                }
+                else if (_auth_password.Text.Length < 8)
+                {
+                    Toast.MakeText(this, "A password must contain at least 8 characters", ToastLength.Short).Show();
+                }
+                else
+                {
+                    Intent intent = new Intent(this, typeof(MainActivity));
+                    StartActivity(intent);
+                }
             }
             else
             {
-                Intent intent = new Intent(this, typeof(MainActivity));
-                StartActivity(intent);
+                if (!_auth_email.Text.Contains("@"))
+                {
+                    Toast.MakeText(this, "An email must contain (@)", ToastLength.Short).Show();
+                }
+                else if (_auth_password.Text.Length < 8)
+                {
+                    Toast.MakeText(this, "A password must contain at least 8 characters", ToastLength.Short).Show();
+                }
+                else
+                {
+                    Intent intent = new Intent(this, typeof(MainActivity));
+                    StartActivity(intent);
+                }
             }
         }
 
@@ -60,12 +82,14 @@ namespace RushHour_project
                 _auth_username.Visibility = ViewStates.Visible;
                 _loginRegisterBtn.Text = "Sign up";
                 _toRegisterBtn.Text = "Have an account? Log in here!";
+                isLogin = false;
             }
             else // if isLogin == false
             {
                 _auth_username.Visibility = ViewStates.Gone;
                 _loginRegisterBtn.Text = "Login";
                 _toRegisterBtn.Text = "Don't have an account? Sign up here!";
+                isLogin = true;
             }
         }
     }

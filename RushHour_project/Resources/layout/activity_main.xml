@@ -28,16 +28,18 @@
             android:layout_width="match_parent"
             android:layout_height="250dp">
             <Button
+                android:textColor="@android:color/black"
                 android:id="@+id/playBtn_home"
-                android:backgroundTint="@android:color/holo_green_dark"
+                android:backgroundTint="#a0c60e"
                 app:cornerRadius="25dp"
                 android:layout_width="220dp"
                 android:layout_height="60dp"
                 android:text="play"
                 android:textSize="30dp"/>
             <Button
+                android:textColor="@android:color/black"
                 android:id="@+id/statsBtn_home"
-                android:backgroundTint="#D4A017"
+                android:backgroundTint="#f4c33a"
                 app:cornerRadius="25dp"
                 android:layout_marginTop="5dp"
                 android:layout_width="220dp"
@@ -45,8 +47,9 @@
                 android:text="stats"
                 android:textSize="30dp"/>
             <Button
+                android:textColor="@android:color/black"
                 android:id="@+id/settingsBtn_home"
-                android:backgroundTint="@android:color/holo_red_dark"
+                android:backgroundTint="#e14326"
                 app:cornerRadius="25dp"
                 android:layout_marginTop="5dp"
                 android:layout_width="220dp"
@@ -60,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <Button
+                android:textColor="@android:color/white"
                 android:backgroundTint="@android:color/transparent"
                 android:textSize="20dp"
                 android:textAllCaps="false"
@@ -68,6 +72,7 @@
                 android:layout_height="wrap_content"
                 android:text="Login"/>
             <Button
+                android:textColor="@android:color/white"
                 android:textSize="20dp"
                 android:backgroundTint="@android:color/transparent"
                 android:textAllCaps="false"

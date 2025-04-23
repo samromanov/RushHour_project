@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login to play with full access"/>
-    </LinearLayout>/>
+    </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
         android:gravity="center"
@@ -54,6 +54,7 @@
             android:hint="email"
             android:inputType="textEmailAddress"/>
         <EditText
+            android:inputType="textPassword"
             android:singleLine="true"
             android:id="@+id/auth_password"
             android:layout_marginTop="15dp"
@@ -72,13 +73,14 @@
             android:textSize="20dp"
             android:layout_width="300dp"
             android:layout_height="55dp"/>
-    </LinearLayout>/>
+    </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
+            android:textColor="@android:color/white"
             android:id="@+id/toRegisterBtn"
             android:backgroundTint="@android:color/transparent"
             android:textSize="17dp"
@@ -86,5 +88,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't have an account? Click here!"/>
-    </LinearLayout>/>
+    </LinearLayout>
 </LinearLayout>

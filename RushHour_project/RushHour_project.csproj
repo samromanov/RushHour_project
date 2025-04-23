@@ -61,6 +61,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\BoardAdapter.cs" />
+    <Compile Include="Adapters\LevelAdapter.cs" />
     <Compile Include="AuthenticationPageActivity.cs" />
     <Compile Include="Classes\Advanced.cs" />
     <Compile Include="Classes\Beginner.cs" />
@@ -69,11 +71,13 @@
     <Compile Include="Classes\Grand_Master.cs" />
     <Compile Include="Classes\Intermediate.cs" />
     <Compile Include="Classes\Level.cs" />
+    <Compile Include="GameActivity.cs" />
     <Compile Include="LevelsPageActivity.cs" />
     <Compile Include="Lists\LevelsList.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsActivity.cs" />
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +155,35 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\settings_page.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\round_button.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\individual_level.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_game.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\board.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\game_logo4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\redCircle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\grid_item.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

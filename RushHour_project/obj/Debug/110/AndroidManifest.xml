@@ -10,7 +10,11 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme" android:name="android.app.Application" android:debuggable="true" android:extractNativeLibs="true">
+    <activity android:label="AuthenticationPageActivity" android:name="crc64e41b7cefd2b1a778.AuthenticationPageActivity" />
+    <activity android:label="GameActivity" android:name="crc64e41b7cefd2b1a778.GameActivity" />
+    <activity android:label="LevelsPageActivity" android:name="crc64e41b7cefd2b1a778.LevelsPageActivity" />
     <activity android:label="@string/app_name" android:theme="@style/AppTheme" android:name="crc64e41b7cefd2b1a778.MainActivity" />
+    <activity android:label="SettingsActivity" android:name="crc64e41b7cefd2b1a778.SettingsActivity" />
     <activity android:label="SplashActivity" android:noHistory="true" android:theme="@style/AppTheme" android:name="crc64e41b7cefd2b1a778.SplashActivity" android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

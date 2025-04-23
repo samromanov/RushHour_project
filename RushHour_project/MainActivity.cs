@@ -29,6 +29,13 @@ namespace RushHour_project
 
             _playBtn_home.Click += _playBtn_home_Click;
             _loginBtn.Click += _loginBtn_Click;
+            _settingsBtn_home.Click += _settingsBtn_home_Click;
+        }
+
+        private void _settingsBtn_home_Click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(SettingsActivity));
+            StartActivity(intent);
         }
 
         private void _loginBtn_Click(object sender, System.EventArgs e)

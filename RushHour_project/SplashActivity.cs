@@ -23,7 +23,7 @@ namespace RushHour_project
             SetContentView(Resource.Layout.activity_splash);
 
             // Create your application here
-            Task.Delay(3000).ContinueWith(_ =>
+            Task.Delay(2000).ContinueWith(_ =>
             {
                 StartActivity(new Intent(this, typeof(MainActivity)));
             }, TaskScheduler.FromCurrentSynchronizationContext());

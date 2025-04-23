@@ -11,7 +11,11 @@ using System.Text;
 
 namespace RushHour_project.Classes
 {
-    class Expert
+    public class Expert : Level
     {
+        public Expert(int difficulty, int levelNumber, List<Car> cars) : base(difficulty, levelNumber, cars)
+        {
+
+        }
     }
 }

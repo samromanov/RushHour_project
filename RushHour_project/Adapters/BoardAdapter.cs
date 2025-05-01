@@ -78,10 +78,4 @@ namespace RushHour_project.Adapters
         }
 
     }
-
-    class BoardAdapterViewHolder : Java.Lang.Object
-    {
-        //Your adapter views to re-use
-        //public TextView Title { get; set; }
-    }
 }

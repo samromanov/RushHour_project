@@ -40,7 +40,78 @@ namespace RushHour_project.Classes
             List<Car> clonedCars = this.cars.Select(car => car.Clone()).ToList();
             return new Level(this.difficulty, this.levelNumber, clonedCars);
         }
+        public bool TryMoveCar(char carId, int moveAmount)
+        {
+            // Find the car
+            var car = cars.FirstOrDefault(c => c.Id == carId);
+            if (car == null || moveAmount == 0) return false;
 
+            // Remove the car from the board temporarily
+            int row = car.Row, col = car.Column;
+            for (int i = 0; i < car.Length; i++)
+            {
+                board[row, col] = '.'; // Mark as empty
+                if (car.IsHorizontal)
+                    col += 1;
+                else
+                    row += 1;
+            }
+
+            // Calculate new position
+            int newRow = car.Row, newCol = car.Column;
+            if (car.IsHorizontal)
+                newCol += moveAmount;
+            else
+                newRow += moveAmount;
+
+            // Check if the move is within bounds and not colliding
+            for (int i = 0; i < car.Length; i++)
+            {
+                int checkRow = newRow, checkCol = newCol;
+                if (car.IsHorizontal)
+                    checkCol += i;
+                else
+                    checkRow += i;
+
+                // Out of bounds?
+                if (checkRow < 0 || checkRow >= 6 || checkCol < 0 || checkCol >= 6)
+                {
+                    // Restore the car to its original position
+                    PlaceCarOnBoard(car);
+                    return false;
+                }
+
+                // Collision?
+                if (board[checkRow, checkCol] != '.')
+                {
+                    PlaceCarOnBoard(car);
+                    return false;
+                }
+            }
+
+            // Move is valid, update car position
+            car.Row = newRow;
+            car.Column = newCol;
+
+            // Place the car in the new position
+            PlaceCarOnBoard(car);
+
+            return true;
+        }
+
+        // Helper to place a single car on the board
+        private void PlaceCarOnBoard(Car car)
+        {
+            int row = car.Row, col = car.Column;
+            for (int i = 0; i < car.Length; i++)
+            {
+                board[row, col] = car.Id;
+                if (car.IsHorizontal)
+                    col += 1;
+                else
+                    row += 1;
+            }
+        }
         public void PlaceCarsOnBoard()
         {
             foreach (var car in this.cars)

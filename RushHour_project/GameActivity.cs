@@ -41,7 +41,9 @@ namespace RushHour_project
         public void Init()
         {
             CHOSEN_LEVEL = int.Parse(Intent.GetStringExtra("chosenLevel")); // fetch the chosen level number from the intent
-            //string cars_level_var = "cars_level" + Intent.GetStringExtra("chosenLevel");
+
+
+            //finding the level
             foreach (var level in LevelsList.levelsList)
             {
                 if (level.levelNumber == CHOSEN_LEVEL)
@@ -55,21 +57,20 @@ namespace RushHour_project
             cloned_chosenLevel.PlaceCarsOnBoard();
 
             _boardGrid = FindViewById<GridView>(Resource.Id.boardGrid);
-            _boardGrid.Adapter = new BoardAdapter(this, cloned_chosenLevel.board);
-
+            _boardGrid.Adapter = new BoardAdapter(this, cloned_chosenLevel.board,cloned_chosenLevel.cars);
             _boardGrid.Touch += BoardGrid_Touch;
 
 
         }
-        public enum MoveDirection
-        {
-            Forward,
-            Backward
-        }
+        //public enum MoveDirection
+        //{
+        //    Forward,
+        //    Backward
+        //}
         private void BoardGrid_Touch(object sender, View.TouchEventArgs e)
         {
             var ev = e.Event;
-            int action = (int)(ev.Action & MotionEventActions.Mask);
+            int action = (int)(ev.Action & MotionEventActions.Mask); //
 
             switch (action)
             {
@@ -115,7 +116,7 @@ namespace RushHour_project
                         }
                         // Reset startX/startY to current position to allow further dragging
                         startX = ev.GetX();
-                        startY = ev.GetY();
+                        startY = ev.GetY(); 
                     }
                     break;
 

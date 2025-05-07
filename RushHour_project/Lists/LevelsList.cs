@@ -30,12 +30,11 @@ namespace RushHour_project.Lists
             new Car('X',2,0,2,true,true),
             new Car('A',0,0,2,false),
             new Car('O',0,3,3,true),
-            new Car('Q',5,0,2,true),
             new Car('B',1,3,2,false),
             new Car('D',4,2,2,false),
             new Car('C',2,4,2,false),
             new Car('F',5,0,2,true),
-            new Car('G',5,3,2,true),
+            new Car('G',5,3,2,true),  
             new Car('E',4,4,2,true),
             new Car('P',1,5,3,false),
             new Car('Q',3,0,3,true)

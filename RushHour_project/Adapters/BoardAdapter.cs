@@ -19,11 +19,13 @@ namespace RushHour_project.Adapters
         private readonly Context _context;
         private readonly char[,] _board;
         private readonly Dictionary<char, string> carColors;
+        private readonly List<Car> _cars;
 
-        public BoardAdapter(Context context, char[,] board)
+        public BoardAdapter(Context context, char[,] board, List<Car> cars)
         {
             this._context = context;
             this._board = board;
+            this._cars = cars;
 
             // Define car colors (hex code)
             carColors = new Dictionary<char, string>
@@ -48,6 +50,7 @@ namespace RushHour_project.Adapters
             };
         }
 
+        //Makes it easy to work with the board as a flat list (which is how GridView works), even though the board is a 2D array.
         public override char this[int position]
         {
             get
@@ -58,6 +61,9 @@ namespace RushHour_project.Adapters
             }
         }
 
+
+        //Returns the total number of cells in the board(should be 36 for a 6x6 grid).
+        //Tells the adapter how many items(cells) to display.
         public override int Count => _board.Length;
 
         public override long GetItemId(int position) => position;
@@ -65,14 +71,57 @@ namespace RushHour_project.Adapters
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView ?? LayoutInflater.From(_context).Inflate(Resource.Layout.grid_item, parent, false);
-            TextView text = view.FindViewById<TextView>(Resource.Id.cellText);
+            FrameLayout cell_item = view.FindViewById<FrameLayout>(Resource.Id.cell_item);
 
             int row = position / 6;
             int col = position % 6;
             char cell = _board[row, col];
 
-            text.Text = cell == '.' ? "" : cell.ToString();
-            text.SetBackgroundColor(Color.ParseColor(carColors.ContainsKey(cell) ? carColors[cell] : "#AAAAAA"));
+            if (cell == '.')
+            {
+                cell_item.SetBackgroundResource(Resource.Drawable.emptyCell);
+            }
+            else
+            {
+                // Find the car object
+                Car car = _cars.FirstOrDefault(c => c.Id == cell);
+                if (car != null)
+                {
+                    int carPart = 0; // 0 = start, 1 = middle, 2 = end (for length 3)
+                    if (car.IsHorizontal)
+                    {
+                        carPart = col - car.Column;
+                    }
+                    else
+                    {
+                        carPart = row - car.Row;
+                    }
+
+                    // Now we know which part of the car this cell is!
+                    switch (carPart)
+                    {
+                        case 0: // start
+
+                            break;
+                        case 1: // middle
+
+                            break;
+                        case 2: // end
+
+                            break;
+                            
+                    }
+
+                    
+
+                    
+                }
+                else
+                {
+                    // fallback if car not found
+                    cell_item.SetBackgroundColor(Color.ParseColor(carColors.ContainsKey(cell) ? carColors[cell] : "#AAAAAA"));
+                }
+            }
 
             return view;
         }

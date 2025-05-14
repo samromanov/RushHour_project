@@ -8,45 +8,35 @@
     android:layout_height="match_parent"
     android:background="@drawable/enhanced_background">
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:layout_marginTop="5dp"
+            android:background="@drawable/backarrow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/login_logo_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="140dp"
         android:gravity="center">
-        <TextView
-            android:textSize="20dp"
-            android:textColor="@android:color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome to"/>
         <ImageView
             android:src="@drawable/game_logo_main1"
             android:layout_width="wrap_content"
             android:layout_height="90dp"/>
-        <TextView
-            android:layout_marginTop="20dp"
-            android:textColor="@android:color/white"
-            android:textSize="17dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login to play with full access"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/fields_layout"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="270dp">
-        <EditText
-            android:singleLine="true"
-            android:id="@+id/auth_username"
-            android:padding="10dp"
-            android:background="@drawable/rounded_edittext"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:hint="username"/>
+        android:layout_height="180dp">
+
         <EditText
             android:singleLine="true"
             android:id="@+id/auth_email"
-            android:layout_marginTop="15dp"
             android:padding="10dp"
             android:background="@drawable/rounded_edittext"
             android:layout_width="300dp"
@@ -63,40 +53,44 @@
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:hint="password"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="vertical"
+        android:gravity="center">
         <Button
+            android:textStyle="bold"
             android:id="@+id/loginRegisterBtn"
             app:cornerRadius="25dp"
-            android:layout_marginTop="10dp"
             android:backgroundTint="@android:color/holo_green_dark"
             android:textAllCaps="false"
             android:text="Login"
-            android:textSize="20dp"
-            android:layout_width="300dp"
-            android:layout_height="55dp"/>
-        <Button
-            android:id="@+id/cancelBtn"
-            app:cornerRadius="25dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@android:color/holo_red_dark"
-            android:textAllCaps="false"
-            android:text="@android:string/cancel"
-            android:textSize="20dp"
-            android:layout_width="300dp"
-            android:layout_height="55dp"/>
+            android:textSize="25dp"
+            android:layout_width="180dp"
+            android:layout_height="65dp"/>
     </LinearLayout>
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <Button
+        <TextView
+            android:textStyle="bold"
+            android:textSize="20dp"
             android:textColor="@android:color/white"
-            android:id="@+id/toRegisterBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have account?"/>
+        <Button
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:id="@+id/signup_login"
             android:backgroundTint="@android:color/transparent"
-            android:textSize="17dp"
+            android:textSize="20dp"
             android:textAllCaps="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account? Click here!"/>
+            android:text="Sign up"/>
     </LinearLayout>
 </LinearLayout>

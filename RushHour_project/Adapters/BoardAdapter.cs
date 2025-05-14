@@ -87,7 +87,7 @@ namespace RushHour_project.Adapters
                 Car car = _cars.FirstOrDefault(c => c.Id == cell);
                 if (car != null)
                 {
-                    int carPart = 0; // 0 = start, 1 = middle, 2 = end (for length 3)
+                    int carPart = 0; // 0 = start, 1 = middle (for length 3), 2 = end 
                     if (car.IsHorizontal)
                     {
                         carPart = col - car.Column;
@@ -101,6 +101,14 @@ namespace RushHour_project.Adapters
                     switch (carPart)
                     {
                         case 0: // start
+                            if (car.IsHorizontal)
+                            {
+
+                            }
+                            else
+                            {
+
+                            }
 
                             break;
                         case 1: // middle
@@ -109,6 +117,7 @@ namespace RushHour_project.Adapters
                         case 2: // end
 
                             break;
+                        
                             
                     }
 

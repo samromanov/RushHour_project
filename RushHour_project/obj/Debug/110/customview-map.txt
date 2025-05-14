@@ -17,6 +17,7 @@ foreground;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher.xml
 foreground;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher_round.xml
 FrameLayout;obj\Debug\110\res\layout\grid_item.xml
 GridView;obj\Debug\110\res\layout\activity_game.xml
+ImageButton;obj\Debug\110\res\layout\authentication_page.xml
 ImageView;obj\Debug\110\res\layout\activity_main.xml
 ImageView;obj\Debug\110\res\layout\activity_splash.xml
 ImageView;obj\Debug\110\res\layout\authentication_page.xml

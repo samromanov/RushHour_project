@@ -14,7 +14,7 @@ namespace RushHour_project
     public class User
     {
         public string Uid { get; set; }
-        public string Name { get; set; }
+        public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
 
@@ -24,8 +24,6 @@ namespace RushHour_project
 
         public const string COLLECTION_NAME = "users"; // the collection of the users in the database (collection)
         public const string CURRENT_USER_FILE = "currentUserFile"; // the current user that uses the application
-        public const string ORDERS_COLLECTION_NAME = "orders"; // the collection of the user's orders
-
 
 
         public User()
@@ -39,9 +37,9 @@ namespace RushHour_project
             this.firebaseAuthentication = FirebaseHelper.GetFirebaseAuthentication();
             this.database = FirebaseHelper.GetFirestore();
         }
-        public User(string name, string email, string password) // when registering
+        public User(string username, string email, string password) // when registering
         {
-            this.Name = name;
+            this.Username = username;
             this.Email = email;
             this.Password = password;
             this.firebaseAuthentication = FirebaseHelper.GetFirebaseAuthentication();
@@ -56,12 +54,13 @@ namespace RushHour_project
         }
 
 
-        public static void SaveUserInfo(string email, string password) // saves the current user info to the SharedPreference
+        public static void SaveUserInfo(string username, string email, string password) // saves the current user info to the SharedPreference
         {
             // Get SharedPreferences Editor
             var editor = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private).Edit();
 
-            // Store user email and password
+            // Store username, email and password
+            editor.PutString("username", username);
             editor.PutString("email", email);
             editor.PutString("password", password);
 
@@ -101,7 +100,7 @@ namespace RushHour_project
             {
                 await this.firebaseAuthentication.SignInWithEmailAndPassword(this.Email, this.Password);
                 this.Uid = firebaseAuthentication.Uid;
-                User.SaveUserInfo(this.Email, this.Password);
+                User.SaveUserInfo(this.Username, this.Email, this.Password);
 
             }
             catch (Exception ex)
@@ -119,6 +118,7 @@ namespace RushHour_project
                 await Task.Run(() =>
                 {
                     var editor = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private).Edit();
+                    editor.PutString("username", "");
                     editor.PutString("email", "");
                     editor.PutString("password", "");
                     editor.Apply(); // Still doesn't return a Task, but now it's executed on a background thread
@@ -151,9 +151,9 @@ namespace RushHour_project
             try
             {
                 HashMap userMap = new HashMap();
-                userMap.Put("userName", this.Name);
+                userMap.Put("username", this.Username);
                 userMap.Put("email", this.Email);
-                userMap.Put("password", this.Password);
+                //userMap.Put("password", this.Password);
                 userMap.Put("isAdmin", isAdmin);
 
                 DocumentReference userReference = this.database.Collection(COLLECTION_NAME).Document(this.firebaseAuthentication.CurrentUser.Uid);

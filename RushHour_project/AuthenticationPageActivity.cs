@@ -78,20 +78,20 @@ namespace RushHour_project
 
         private void SwitchAuthenticationMethod_Click(object sender, EventArgs e)
         {
-            if (isLogin) // clicking while being in the login page
-            {
-                _auth_username.Visibility = ViewStates.Visible;
-                _loginSignupBtn.Text = "Sign up";
-                _toRegisterBtn.Text = "Have an account? Log in here!";
-                isLogin = false;
-            }
-            else // if isLogin == false
-            {
-                _auth_username.Visibility = ViewStates.Gone;
-                _loginSignupBtn.Text = "Login";
-                _toRegisterBtn.Text = "Don't have an account? Sign up here!";
-                isLogin = true;
-            }
+            //if (isLogin) // clicking while being in the login page
+            //{
+            //    _auth_username.Visibility = ViewStates.Visible;
+            //    _loginSignupBtn.Text = "Sign up";
+            //    _toRegisterBtn.Text = "Have an account? Log in here!";
+            //    isLogin = false;
+            //}
+            //else // if isLogin == false
+            //{
+            //    _auth_username.Visibility = ViewStates.Gone;
+            //    _loginSignupBtn.Text = "Login";
+            //    _toRegisterBtn.Text = "Don't have an account? Sign up here!";
+            //    isLogin = true;
+            //}
         }
     }
 }

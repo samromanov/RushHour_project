@@ -77,6 +77,7 @@ namespace RushHour_project.Adapters
             int col = position % 6;
             char cell = _board[row, col];
 
+
             if (cell == '.')
             {
                 cell_item.SetBackgroundResource(Resource.Drawable.emptyCell);
@@ -85,9 +86,10 @@ namespace RushHour_project.Adapters
             {
                 // Find the car object
                 Car car = _cars.FirstOrDefault(c => c.Id == cell);
+                string orientation = "hor"; // hor -> horizontal , ver -> vertical
                 if (car != null)
                 {
-                    int carPart = 0; // 0 = start, 1 = middle (for length 3), 2 = end 
+                    int carPart = 0; // 0 = start, 1 = middle, 2 = end (for length 3)
                     if (car.IsHorizontal)
                     {
                         carPart = col - car.Column;
@@ -95,35 +97,40 @@ namespace RushHour_project.Adapters
                     else
                     {
                         carPart = row - car.Row;
+                        orientation = "ver";
                     }
 
-                    // Now we know which part of the car this cell is!
-                    switch (carPart)
+                    // Now I know which part of the car this cell is!
+                    // I can use this info to set a different drawable:
+                    // e.g. hor_x_start, ver_b_end, hor_q_middle
+
+                    string resourceName;
+                    if (car.Length == 2)
                     {
-                        case 0: // start
-                            if (car.IsHorizontal)
-                            {
-
-                            }
-                            else
-                            {
-
-                            }
-
-                            break;
-                        case 1: // middle
-
-                            break;
-                        case 2: // end
-
-                            break;
-                        
-                            
+                        resourceName = carPart == 0
+                            ? $"{orientation}_{char.ToLower(cell)}_start"
+                            : $"{orientation}_{char.ToLower(cell)}_end";
+                    }
+                    else // length == 3
+                    {
+                        if (carPart == 0)
+                            resourceName = $"{orientation}_{char.ToLower(cell)}_start";
+                        else if (carPart == car.Length - 1)
+                            resourceName = $"{orientation}_{char.ToLower(cell)}_end";
+                        else
+                            resourceName = $"{orientation}_{char.ToLower(cell)}_middle";
                     }
 
-                    
-
-                    
+                    int resId = _context.Resources.GetIdentifier(resourceName, "drawable", _context.PackageName);
+                    if (resId != 0)
+                    {
+                        cell_item.SetBackgroundResource(resId);
+                    }
+                    else
+                    {
+                        // fallback
+                        cell_item.SetBackgroundColor(Color.ParseColor(carColors.ContainsKey(cell) ? carColors[cell] : "#AAAAAA"));
+                    }
                 }
                 else
                 {

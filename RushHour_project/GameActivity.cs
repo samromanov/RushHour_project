@@ -57,16 +57,11 @@ namespace RushHour_project
             cloned_chosenLevel.PlaceCarsOnBoard();
 
             _boardGrid = FindViewById<GridView>(Resource.Id.boardGrid);
-            _boardGrid.Adapter = new BoardAdapter(this, cloned_chosenLevel.board,cloned_chosenLevel.cars);
+            _boardGrid.Adapter = new BoardAdapter(this, cloned_chosenLevel.board, cloned_chosenLevel.cars);
             _boardGrid.Touch += BoardGrid_Touch;
 
 
         }
-        //public enum MoveDirection
-        //{
-        //    Forward,
-        //    Backward
-        //}
         private void BoardGrid_Touch(object sender, View.TouchEventArgs e)
         {
             var ev = e.Event;

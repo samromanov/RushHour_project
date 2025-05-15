@@ -26,13 +26,6 @@ public class BoardAdapter
 			mono.android.TypeManager.Activate ("RushHour_project.Adapters.BoardAdapter, RushHour_project", "", this, new java.lang.Object[] {  });
 	}
 
-	public BoardAdapter (android.content.Context p0, char[] p1)
-	{
-		super ();
-		if (getClass () == BoardAdapter.class)
-			mono.android.TypeManager.Activate ("RushHour_project.Adapters.BoardAdapter, RushHour_project", "Android.Content.Context, Mono.Android:System.Char[0...,0...], mscorlib", this, new java.lang.Object[] { p0, p1 });
-	}
-
 
 	public java.lang.Object getItem (int p0)
 	{

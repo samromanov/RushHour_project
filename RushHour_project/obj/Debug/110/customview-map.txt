@@ -15,6 +15,7 @@ external-cache-path;C:\Users\timov\source\repos\RushHour_project\RushHour_projec
 external-path;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\41\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 foreground;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher.xml
 foreground;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher_round.xml
+FrameLayout;obj\Debug\110\res\layout\activity_game.xml
 FrameLayout;obj\Debug\110\res\layout\grid_item.xml
 GridView;obj\Debug\110\res\layout\activity_game.xml
 ImageButton;obj\Debug\110\res\layout\authentication_page.xml
@@ -26,7 +27,6 @@ LinearLayout;obj\Debug\110\res\layout\activity_game.xml
 LinearLayout;obj\Debug\110\res\layout\activity_main.xml
 LinearLayout;obj\Debug\110\res\layout\activity_splash.xml
 LinearLayout;obj\Debug\110\res\layout\authentication_page.xml
-LinearLayout;obj\Debug\110\res\layout\grid_item.xml
 LinearLayout;obj\Debug\110\res\layout\individual_level.xml
 LinearLayout;obj\Debug\110\res\layout\levels_page.xml
 LinearLayout;obj\Debug\110\res\layout\settings_page.xml
@@ -48,4 +48,4 @@ stroke;obj\Debug\110\res\drawable\round_button.xml
 stroke;obj\Debug\110\res\drawable\rounded_edittext.xml
 style;obj\Debug\110\res\values\styles.xml
 TextView;obj\Debug\110\res\layout\authentication_page.xml
-TextView;obj\Debug\110\res\layout\grid_item.xml
+View;obj\Debug\110\res\layout\activity_game.xml

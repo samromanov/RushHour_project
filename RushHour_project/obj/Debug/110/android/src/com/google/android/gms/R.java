@@ -48,25 +48,25 @@ public final class R {
 		public static final int common_google_signin_btn_text_light_focused = 0x7f070077;
 		public static final int common_google_signin_btn_text_light_normal = 0x7f070078;
 		public static final int common_google_signin_btn_text_light_normal_background = 0x7f070079;
-		public static final int googleg_disabled_color_18 = 0x7f070083;
-		public static final int googleg_standard_color_18 = 0x7f070084;
+		public static final int googleg_disabled_color_18 = 0x7f070086;
+		public static final int googleg_standard_color_18 = 0x7f070087;
 	}
 	public static final class id {
 		public static final int adjust_height = 0x7f08003c;
 		public static final int adjust_width = 0x7f08003d;
-		public static final int auto = 0x7f080044;
-		public static final int center = 0x7f080052;
-		public static final int dark = 0x7f080062;
-		public static final int icon_only = 0x7f080083;
-		public static final int light = 0x7f080090;
-		public static final int none = 0x7f0800a3;
-		public static final int normal = 0x7f0800a4;
-		public static final int radio = 0x7f0800b2;
-		public static final int standard = 0x7f0800da;
-		public static final int text = 0x7f0800ea;
-		public static final int text2 = 0x7f0800eb;
-		public static final int wide = 0x7f080108;
-		public static final int wrap_content = 0x7f08010a;
+		public static final int auto = 0x7f080048;
+		public static final int center = 0x7f080056;
+		public static final int dark = 0x7f080065;
+		public static final int icon_only = 0x7f08008b;
+		public static final int light = 0x7f080099;
+		public static final int none = 0x7f0800ae;
+		public static final int normal = 0x7f0800af;
+		public static final int radio = 0x7f0800bd;
+		public static final int standard = 0x7f0800e6;
+		public static final int text = 0x7f0800fa;
+		public static final int text2 = 0x7f0800fb;
+		public static final int wide = 0x7f080119;
+		public static final int wrap_content = 0x7f08011b;
 	}
 	public static final class integer {
 		public static final int google_play_services_version = 0x7f090008;

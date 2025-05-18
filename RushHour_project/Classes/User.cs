@@ -22,7 +22,7 @@ namespace RushHour_project
         FirebaseAuth firebaseAuthentication;
         FirebaseFirestore database;
 
-        public const string COLLECTION_NAME = "users"; // the collection of the users in the database (collection)
+        public const string USERS_COLLECTION = "users"; // the collection of the users in the database (collection)
         public const string CURRENT_USER_FILE = "currentUserFile"; // the current user that uses the application
 
 
@@ -54,7 +54,7 @@ namespace RushHour_project
         }
 
 
-        public static void SaveUserInfo(string username, string email, string password) // saves the current user info to the SharedPreference
+        public static void SaveUserInfo_SP(string username, string email) // saves the current user info to the SharedPreference (password not saved)
         {
             // Get SharedPreferences Editor
             var editor = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private).Edit();
@@ -62,17 +62,16 @@ namespace RushHour_project
             // Store username, email and password
             editor.PutString("username", username);
             editor.PutString("email", email);
-            editor.PutString("password", password);
 
             // Apply changes
             editor.Apply();
         }
 
-        public async Task<bool> GetUserByEmil()
+        public async Task<bool> GetUserByEmail()
         {
             try
             {
-                var obj = await this.database.Collection(COLLECTION_NAME).WhereEqualTo("email", this.Email).Get();
+                var obj = await this.database.Collection(USERS_COLLECTION).WhereEqualTo("email", this.Email).Get();
                 QuerySnapshot snapshot = (QuerySnapshot)obj;
                 if (snapshot.Documents.Count > 0)
                 {
@@ -98,17 +97,37 @@ namespace RushHour_project
         {
             try
             {
+                // Authenticate user in Firebase Authentication
                 await this.firebaseAuthentication.SignInWithEmailAndPassword(this.Email, this.Password);
-                this.Uid = firebaseAuthentication.Uid;
-                User.SaveUserInfo(this.Username, this.Email, this.Password);
 
+                // Get the authenticated user's UID
+                string uid = this.firebaseAuthentication.CurrentUser.Uid;
+                this.Uid = uid;
+
+                // Fetch the user document from Firestore using the UID
+                DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(uid);
+                DocumentSnapshot documentSnapshot = (DocumentSnapshot)await userReference.Get();
+
+                string username = "User"; // Default username if not found
+
+                // Extract the username from the document
+                if (documentSnapshot.Exists())
+                {
+                    username = documentSnapshot.GetString("username");
+                }
+
+                // Display the welcome Toast message
+                Toast.MakeText(Application.Context, $"Welcome, {username}!", ToastLength.Short).Show();
+
+                User.SaveUserInfo_SP(username, this.Email);
+
+                return true; 
             }
             catch (Exception ex)
             {
                 Toast.MakeText(Application.Context, $"Error: {ex.Message}", ToastLength.Short).Show();
                 return false;
             }
-            return true;
         }
 
         public async Task<bool> Logout()
@@ -120,7 +139,6 @@ namespace RushHour_project
                     var editor = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private).Edit();
                     editor.PutString("username", "");
                     editor.PutString("email", "");
-                    editor.PutString("password", "");
                     editor.Apply(); // Still doesn't return a Task, but now it's executed on a background thread
                 });
 
@@ -153,22 +171,21 @@ namespace RushHour_project
                 HashMap userMap = new HashMap();
                 userMap.Put("username", this.Username);
                 userMap.Put("email", this.Email);
-                //userMap.Put("password", this.Password);
                 userMap.Put("isAdmin", isAdmin);
 
-                DocumentReference userReference = this.database.Collection(COLLECTION_NAME).Document(this.firebaseAuthentication.CurrentUser.Uid);
-                // creates me the user with the same Uid as in the firebase authentication
+                // Save only username and email to SharedPreferences
+                User.SaveUserInfo_SP(this.Username, this.Email);
+
+                DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(this.firebaseAuthentication.CurrentUser.Uid);
                 await userReference.Set(userMap);
             }
             catch (Exception ex)
             {
                 Toast.MakeText(Application.Context, $"Error: {ex.Message}", ToastLength.Short).Show();
+                firebaseAuthentication.CurrentUser?.Delete();
                 return false;
             }
             return true;
         }
-
-        
-        
     }
 }

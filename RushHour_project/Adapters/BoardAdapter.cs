@@ -80,7 +80,7 @@ namespace RushHour_project.Adapters
 
             if (cell == '.')
             {
-                cell_item.SetBackgroundResource(Resource.Drawable.emptyCell);
+                cell_item.SetBackgroundResource(Resource.Drawable.emptyWhiteCell);
             }
             else
             {

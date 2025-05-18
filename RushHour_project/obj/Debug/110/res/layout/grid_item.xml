@@ -1,1 +1,1 @@
-<FrameLayout android:id="@+id/cell_item" android:layout_width="50dp" android:layout_height="50dp" android:background="@drawable/emptycell" xmlns:android="http://schemas.android.com/apk/res/android" />
+<FrameLayout android:id="@+id/cell_item" android:layout_width="52dp" android:layout_height="52dp" android:background="@drawable/emptywhitecell" xmlns:android="http://schemas.android.com/apk/res/android" />

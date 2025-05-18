@@ -41,7 +41,7 @@ namespace RushHour_project
         private void _loginBtn_Click(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(AuthenticationPageActivity));
-            StartActivity(intent);
+            StartActivityForResult(intent, 100);
         }
 
         private void _playBtn_home_Click(object sender, System.EventArgs e)

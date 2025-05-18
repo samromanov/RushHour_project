@@ -1,5 +1,3 @@
-C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Mono.Android.dll
-C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.Android.Support.Fragment.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\bin\Debug\RushHour_project.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\bin\Debug\RushHour_project.pdb
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\bin\Debug\com.companyname.rushhour_project.apk
@@ -171,9 +169,12 @@ C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\res\
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\res\drawable\ver_x_end.png
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\res\drawable\ver_x_start.png
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\res\drawable\hor_x_end.png
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\res\drawable\rounded_background.xml
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\res\drawable\exitsign2.png
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\uploadflags.txt
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\resolvedassemblies.hash
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Java.Interop.dll
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Mono.Android.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Mono.Android.pdb
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Mono.Security.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Mono.Security.pdb
@@ -204,6 +205,7 @@ C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\andr
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.Android.Support.Compat.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.Android.Support.Core.UI.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.Android.Support.Core.Utils.dll
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.Android.Support.Fragment.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.Android.Support.Media.Compat.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.AndroidX.Activity.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.AndroidX.Activity.pdb
@@ -298,12 +300,7 @@ C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\andr
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.GooglePlayServices.Base.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.GooglePlayServices.Basement.dll
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\android\assets\Xamarin.GooglePlayServices.Tasks.dll
-C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\jl\30cf2f2f-4f53-4605-b493-3d3e8fac5b8e.jar
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\stamp\_AndroidXJetifyJavaLibraryRules.stamp
-C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\proguard\37d0da2f-852f-433c-acf6-d89a737ec22b.txt
-C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\proguard\51993977-f6ff-42e6-b3a4-fdd11ae974b6.txt
-C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\proguard\a2b60342-7e80-4206-ac4f-215d5eab12ff.txt
-C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\proguard\e8620c63-7764-46bb-9bbc-f35603840bf7.txt
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\stamp\_AndroidXJetifyProguardRules.stamp
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\_AndroidXJetifyProguardRules.jetify
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\stamp\_AndroidXCecilfy.stamp
@@ -483,3 +480,11 @@ C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\stam
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\stamp\_GenerateJavaStubs.stamp
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\res\drawable\gradient_background.xml
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\res\drawable\emptywhitecell.png
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\res\drawable\gradient_gray.xml
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\jl\7095e47b-9612-4295-9229-a66b606fb390.jar
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\proguard\28e71ffe-1599-4f83-9fe3-0706b93668e1.txt
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\proguard\3d23b178-1932-49be-b1da-540c035eddad.txt
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\proguard\5d809306-303c-4370-a983-72372680b000.txt
+C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\androidx\proguard\5f25e1b3-5d13-4065-9e9b-8230d78117cd.txt

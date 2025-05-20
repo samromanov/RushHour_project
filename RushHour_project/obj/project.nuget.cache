@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "AnUVb6l4urk1e/DBaeFkmsVtum3v90l8cZVeSLTwIwkDjrfKJ2ZBjtYApAp8lhaVPTUXRFO8PaXsr77KML1wxg==",
+  "dgSpecHash": "I70NnT74IcXC3VYQmtcrTbFOQihk6hb/CHBqSY2/ThcQN3AVJ0PhexdfdSjXFQw5WkFOdywzryZnlY6Jk/pDJw==",
   "success": true,
   "projectFilePath": "C:\\Users\\timov\\source\\repos\\RushHour_project\\RushHour_project\\RushHour_project.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\timov\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\timov\\.nuget\\packages\\square.okhttp\\2.7.5\\square.okhttp.2.7.5.nupkg.sha512",
     "C:\\Users\\timov\\.nuget\\packages\\square.okio\\1.6.0\\square.okio.1.6.0.nupkg.sha512",
     "C:\\Users\\timov\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",

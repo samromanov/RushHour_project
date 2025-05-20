@@ -3,6 +3,7 @@ public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
 		/* We need to ensure that "RushHour_project.dll" comes first in this list. */
 		"RushHour_project.dll",
+		"Newtonsoft.Json.dll",
 		"Square.OkHttp.dll",
 		"Square.OkIO.dll",
 		"Xamarin.Android.Support.Annotations.dll",

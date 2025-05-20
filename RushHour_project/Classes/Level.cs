@@ -129,5 +129,20 @@ namespace RushHour_project.Classes
                 }
             }
         }
+        public bool IsWin()
+        {
+            foreach (var car in this.cars)
+            {
+                if (car.Id=='X')
+                {
+                    if (car.Column == 4)//target car arrived at the exit
+                    {
+                        return true;
+                    }
+                    break;
+                }
+            }
+            return false;
+        }
     }
 }

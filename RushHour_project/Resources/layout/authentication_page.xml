@@ -25,7 +25,7 @@
         android:gravity="center">
         <ImageView
             android:id="@+id/auth_gameLogo"
-            android:background="@drawable/gamelogo1"
+            android:background="@drawable/rushhourdeluxelogo"
             android:layout_width="290dp"
             android:layout_height="90dp"/>
     </LinearLayout>
@@ -37,6 +37,7 @@
         android:layout_height="180dp">
 
         <EditText
+            android:singleLine="true"
             android:hint="username"
             android:background="@drawable/rounded_edittext"
             android:layout_width="300dp"
@@ -76,7 +77,7 @@
             android:text="Login"
             android:textSize="25dp"
             android:layout_width="180dp"
-            android:layout_height="65dp"/>
+            android:layout_height="55dp"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

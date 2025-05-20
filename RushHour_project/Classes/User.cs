@@ -8,6 +8,7 @@ using Java.Util;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace RushHour_project
 {
@@ -54,14 +55,17 @@ namespace RushHour_project
         }
 
 
-        public static void SaveUserInfo_SP(string username, string email) // saves the current user info to the SharedPreference (password not saved)
+        public static void SaveUserInfo_SP(string username, string email, string regDate, string userRecords_json) // saves the current user info to the SharedPreference (password not saved)
         {
             // Get SharedPreferences Editor
             var editor = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private).Edit();
 
-            // Store username, email and password
+            // Store username, email and password and more
             editor.PutString("username", username);
             editor.PutString("email", email);
+            editor.PutString("regDate", regDate);
+            editor.PutString("userRecords", userRecords_json);
+            editor.PutBoolean("isLoggedIn", true);
 
             // Apply changes
             editor.Apply();
@@ -108,18 +112,23 @@ namespace RushHour_project
                 DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(uid);
                 DocumentSnapshot documentSnapshot = (DocumentSnapshot)await userReference.Get();
 
-                string username = "User"; // Default username if not found
 
+                string regDate = "??/??/????"; // Default date if not found
+                string username = "User"; // Default username if not found
+                string userRecords_json = documentSnapshot.GetString("userRecords");
+
+                // Extract the regDate from the document
                 // Extract the username from the document
                 if (documentSnapshot.Exists())
                 {
                     username = documentSnapshot.GetString("username");
+                    regDate = documentSnapshot.GetString("regDate");
                 }
 
                 // Display the welcome Toast message
                 Toast.MakeText(Application.Context, $"Welcome, {username}!", ToastLength.Short).Show();
 
-                User.SaveUserInfo_SP(username, this.Email);
+                User.SaveUserInfo_SP(username, this.Email, regDate, userRecords_json);
 
                 return true; 
             }
@@ -139,6 +148,9 @@ namespace RushHour_project
                     var editor = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private).Edit();
                     editor.PutString("username", "");
                     editor.PutString("email", "");
+                    editor.PutString("userRecords", "");
+                    editor.PutBoolean("isLoggedIn", false);
+
                     editor.Apply(); // Still doesn't return a Task, but now it's executed on a background thread
                 });
 
@@ -168,16 +180,41 @@ namespace RushHour_project
             }
             try
             {
+                string registrationDate = DateTime.Now.ToString("dd/MM/yyyy"); //the date of the user's registration
+
+                Dictionary<int, int?> userRecords = new Dictionary<int, int?>();
+
+                // Initialise with nulls for 50 levels
+                for (int i = 1; i <= 60; i++)
+                    userRecords[i] = null;
+                string userRecords_json = JsonConvert.SerializeObject(userRecords);
+
                 HashMap userMap = new HashMap();
                 userMap.Put("username", this.Username);
                 userMap.Put("email", this.Email);
                 userMap.Put("isAdmin", isAdmin);
+                userMap.Put("regDate", registrationDate);
+                userMap.Put("userRecords", userRecords_json);
 
                 // Save only username and email to SharedPreferences
-                User.SaveUserInfo_SP(this.Username, this.Email);
+                User.SaveUserInfo_SP(this.Username, this.Email, registrationDate, userRecords_json);
 
                 DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(this.firebaseAuthentication.CurrentUser.Uid);
                 await userReference.Set(userMap);
+
+                // Fetch the user document from Firestore using the UID
+                DocumentSnapshot documentSnapshot = (DocumentSnapshot)await userReference.Get();
+
+                string username = "User"; // Default username if not found
+
+                // Extract the username from the document
+                if (documentSnapshot.Exists())
+                {
+                    username = documentSnapshot.GetString("username");
+                }
+
+                // Display the welcome Toast message
+                Toast.MakeText(Application.Context, $"Welcome, {username}!", ToastLength.Short).Show();
             }
             catch (Exception ex)
             {
@@ -186,6 +223,53 @@ namespace RushHour_project
                 return false;
             }
             return true;
+        }
+        public async Task<Dictionary<int,int?>> FetchRecordsDict()
+        {
+            try
+            {
+                // Fetch the user document from Firestore using the UID
+                DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(this.Uid);
+                DocumentSnapshot documentSnapshot = (DocumentSnapshot)await userReference.Get();
+
+                string records_json = documentSnapshot.GetString("userRecords");
+
+                // Deserialise
+                Dictionary<int, int?> restoredRecords = JsonConvert.DeserializeObject<Dictionary<int, int?>>(records_json);
+                return restoredRecords;
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, $"Error: {ex.Message}", ToastLength.Short).Show();
+            }
+            return null;
+        }
+
+        //updates the user's records dictionary as string in the firebase database
+        public async void UpdateUserRecords(Dictionary<int,int?> dict)
+        {
+            try
+            {
+                //string userRecords_json = JsonConvert.SerializeObject(dict);
+                //DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(this.firebaseAuthentication.CurrentUser.Uid);
+
+                //await userReference.Update("userRecords", userRecords_json);
+
+                string userRecords_json = JsonConvert.SerializeObject(dict);
+                DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(this.firebaseAuthentication.CurrentUser.Uid);
+
+                Dictionary<string, Java.Lang.Object> updateMap = new Dictionary<string, Java.Lang.Object>
+                {
+                    { "userRecords", new Java.Lang.String(userRecords_json) }
+                };
+
+                await userReference.Set(updateMap, SetOptions.Merge());
+
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, $"Error: {ex.Message}", ToastLength.Short).Show();
+            }
         }
     }
 }

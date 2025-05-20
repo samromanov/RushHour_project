@@ -81,7 +81,7 @@
                         android:textColor="@android:color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="37"/>
+                        android:text="0"/>
                 </LinearLayout>
                 <LinearLayout
                     android:gravity="center"
@@ -138,14 +138,14 @@
                     android:text="reset"
                     android:layout_marginRight="20dp"/>
                 <Button
-                    android:id="@+id/undoBtn"
+                    android:id="@+id/game_solutionBtn"
+                    android:backgroundTint="@android:color/holo_red_dark"
                     android:textStyle="italic"
-                    android:backgroundTint="@android:color/holo_orange_dark"
                     android:textSize="18dp"
                     android:textAllCaps="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="undo"/>
+                    android:text="solution"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -202,17 +202,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Back"
-                android:layout_marginRight="30dp"/>
-            <Button
-                android:id="@+id/game_solutionBtn"
-                android:backgroundTint="@android:color/holo_red_dark"
-                android:textStyle="italic"
-                android:textSize="18dp"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Solution"
-                android:layout_marginRight="30dp"/>
+                android:layout_marginRight="120dp"/>
+
             <Button
                 android:id="@+id/game_homeBtn"
                 android:textColor="@android:color/black"

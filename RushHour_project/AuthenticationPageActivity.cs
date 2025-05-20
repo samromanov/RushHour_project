@@ -43,6 +43,7 @@ namespace RushHour_project
         }
         void Init()
         {
+            _auth_question = FindViewById<TextView>(Resource.Id.auth_question);
             _auth_backBtn = FindViewById<ImageButton>(Resource.Id.auth_backBtn);
             _login_logo_layout = FindViewById<LinearLayout>(Resource.Id.login_logo_layout); // the layout where the logo is placed
             _fields_layout = FindViewById<LinearLayout>(Resource.Id.fields_layout); //the layout where all of the edittext fields
@@ -67,6 +68,7 @@ namespace RushHour_project
 
         private void _auth_backBtn_Click(object sender, EventArgs e)
         {
+            SetResult(Result.Canceled);
             Finish();
         }
 
@@ -88,15 +90,15 @@ namespace RushHour_project
             {
                 switch (isLogin)
                 {
-                    case true: // in case the page is a login page
+                    case true: // in case this page is a login page
                         try
                         {
                             User user = new User(_auth_email.Text, _auth_password.Text);
                             if (await user.Login() == true)
-                            {
-                                Intent intent = new Intent(this, typeof(MainActivity));                               
-                                StartActivity(intent);
-                                //StartActivity(intent);
+                            {                              
+                                Intent homeReturnIntent = new Intent();
+                                SetResult(Result.Ok, homeReturnIntent);
+                                Finish();
                             }
                             else
                             {
@@ -120,16 +122,13 @@ namespace RushHour_project
                                 User user = new User(_auth_username.Text, _auth_email.Text, _auth_password.Text);
                                 if (await user.Register() == true)
                                 {
-
-                                    Toast.MakeText(this, "You're successfully registered", ToastLength.Short).Show();
-                                    Intent intent = new Intent(this, typeof(MainActivity));
-                                    intent.PutExtra("email", _auth_email.Text);
-                                    intent.PutExtra("password", _auth_password.Text);
-                                    StartActivityForResult(intent, 200);
+                                    Intent homeReturnIntent = new Intent();
+                                    SetResult(Result.Ok, homeReturnIntent);
+                                    Finish();
                                 }
                                 else
                                 {
-                                    Toast.MakeText(this, "Username or email already exists", ToastLength.Short).Show();
+                                    Toast.MakeText(this, "Email has already been taken", ToastLength.Short).Show();
                                 }
                             }
                             catch (Exception ex)

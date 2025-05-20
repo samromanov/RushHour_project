@@ -162,5 +162,18 @@ namespace RushHour_project.Lists
             new Grand_Master(5,46,cars_level46),
             new Grand_Master(5,60,cars_level60)
         };
+
+        //returns true if the level exists in the list. false otherwise
+        public static bool LevelExist(int levelNum)
+        {
+            foreach (var level in levelsList)
+            {
+                if (level.levelNumber == levelNum)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

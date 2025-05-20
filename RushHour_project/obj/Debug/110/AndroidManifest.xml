@@ -14,6 +14,7 @@
     <activity android:label="GameActivity" android:name="crc64e41b7cefd2b1a778.GameActivity" />
     <activity android:label="LevelsPageActivity" android:name="crc64e41b7cefd2b1a778.LevelsPageActivity" />
     <activity android:label="@string/app_name" android:theme="@style/AppTheme" android:name="crc64e41b7cefd2b1a778.MainActivity" />
+    <activity android:label="ProfileActivity" android:name="crc64e41b7cefd2b1a778.ProfileActivity" />
     <activity android:label="SettingsActivity" android:name="crc64e41b7cefd2b1a778.SettingsActivity" />
     <activity android:label="SplashActivity" android:noHistory="true" android:theme="@style/AppTheme" android:name="crc64e41b7cefd2b1a778.SplashActivity" android:exported="true">
       <intent-filter>

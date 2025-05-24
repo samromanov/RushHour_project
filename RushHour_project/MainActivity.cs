@@ -12,7 +12,7 @@ namespace RushHour_project
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
     public class MainActivity : AppCompatActivity
     {
-        private Button _playBtn_home, _loginProfileBtn, _settingsBtn;
+        private Button _playBtn_home, _loginProfileBtn, _settingsBtn, _progressBtn, _leaderboardBtn;
         private const int LOGIN_REQUEST_CODE = 1; // code for Intent login
 
         //Authentication
@@ -31,10 +31,14 @@ namespace RushHour_project
             _playBtn_home = FindViewById<Button>(Resource.Id.playBtn_home);
             _loginProfileBtn = FindViewById<Button>(Resource.Id.loginProfileBtn);
             _settingsBtn = FindViewById<Button>(Resource.Id.settingsBtn);
+            _progressBtn = FindViewById<Button>(Resource.Id.progressBtn);
+            _leaderboardBtn = FindViewById<Button>(Resource.Id.leaderboardBtn);
 
             _playBtn_home.Click += PlayBtn_Click;
             _loginProfileBtn.Click += LoginProfileBtn_Click;
             _settingsBtn.Click += SettingsBtn_Click;
+            _progressBtn.Click += _progressBtn_Click;
+            _leaderboardBtn.Click += _leaderboardBtn_Click;
 
 
             
@@ -43,14 +47,28 @@ namespace RushHour_project
 
             if (isLoggedIn == false) // if not logged in
             {
-                _loginProfileBtn.Text = "Login";              
+                _loginProfileBtn.Text = "Login";
+                _leaderboardBtn.Visibility = Android.Views.ViewStates.Gone;
 
             }
             else //if logged in
             {
                 _loginProfileBtn.Text = "Profile";
+                _leaderboardBtn.Visibility = Android.Views.ViewStates.Visible;
             }
 
+        }
+
+        private void _leaderboardBtn_Click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(LeaderboardActivity));
+            StartActivity(intent);
+        }
+
+        private void _progressBtn_Click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(ProgressActivity));
+            StartActivity(intent);
         }
 
         private void SettingsBtn_Click(object sender, System.EventArgs e)
@@ -75,7 +93,7 @@ namespace RushHour_project
 
         private void PlayBtn_Click(object sender, System.EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(LevelsPageActivity));
+            Intent intent = new Intent(this, typeof(LevelSelectionActivity));
             StartActivity(intent);
         }
 

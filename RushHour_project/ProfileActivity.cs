@@ -40,9 +40,9 @@ namespace RushHour_project
 
             ISharedPreferences prefs = Application.Context.GetSharedPreferences("currentUserFile", FileCreationMode.Private);
 
-            _profile_username.Text = prefs.GetString("username", "none");
+            _profile_username.Text = prefs.GetString("username", "user");
             _profile_email.Text = prefs.GetString("email", "");
-            _profile_date.Text = prefs.GetString("regDate", "none");
+            _profile_date.Text = prefs.GetString("regDate", "not found");
 
         }
 

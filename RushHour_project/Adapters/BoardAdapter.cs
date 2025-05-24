@@ -20,12 +20,14 @@ namespace RushHour_project.Adapters
         private readonly char[,] _board;
         private readonly Dictionary<char, string> carColors;
         private readonly List<Car> _cars;
+        private readonly string _fromActivity; //the activity that calls the adapter
 
-        public BoardAdapter(Context context, char[,] board, List<Car> cars)
+        public BoardAdapter(Context context, char[,] board, List<Car> cars, string fromActivity)
         {
             this._context = context;
             this._board = board;
             this._cars = cars;
+            this._fromActivity = fromActivity;
 
             // Define car colors (hex code)
             carColors = new Dictionary<char, string>
@@ -70,8 +72,19 @@ namespace RushHour_project.Adapters
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            View view = convertView ?? LayoutInflater.From(_context).Inflate(Resource.Layout.grid_item, parent, false);
-            FrameLayout cell_item = view.FindViewById<FrameLayout>(Resource.Id.cell_item);
+            FrameLayout cell_item;
+            View view;
+            if (_fromActivity == "game") //from the game
+            {
+                view = convertView ?? LayoutInflater.From(_context).Inflate(Resource.Layout.grid_item, parent, false);
+                cell_item = view.FindViewById<FrameLayout>(Resource.Id.cell_item);
+            }
+            else //from levels card
+            {
+                view = convertView ?? LayoutInflater.From(_context).Inflate(Resource.Layout.card_grid_item, parent, false);
+                cell_item = view.FindViewById<FrameLayout>(Resource.Id.card_cell_item);
+            }
+            
 
             int row = position / 6;
             int col = position % 6;

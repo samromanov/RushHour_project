@@ -66,7 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\BoardAdapter.cs" />
+    <Compile Include="Adapters\LeaderboardAdapter.cs" />
     <Compile Include="Adapters\LevelAdapter.cs" />
+    <Compile Include="Adapters\LevelPagerAdapter.cs" />
     <Compile Include="AuthenticationPageActivity.cs" />
     <Compile Include="Classes\Advanced.cs" />
     <Compile Include="Classes\Beginner.cs" />
@@ -75,13 +77,19 @@
     <Compile Include="Classes\Grand_Master.cs" />
     <Compile Include="Classes\Intermediate.cs" />
     <Compile Include="Classes\Level.cs" />
+    <Compile Include="Classes\ScalePageTransformer.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\UserRecords.cs" />
+    <Compile Include="Classes\ZoomOutPageTransformer.cs" />
     <Compile Include="GameActivity.cs" />
     <Compile Include="DB_connection\FirebaseHelper.cs" />
+    <Compile Include="LeaderboardActivity.cs" />
+    <Compile Include="LevelSelectionActivity.cs" />
     <Compile Include="LevelsPageActivity.cs" />
     <Compile Include="Lists\LevelsList.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="ProfileActivity.cs" />
+    <Compile Include="ProgressActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsActivity.cs" />
@@ -129,6 +137,9 @@
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
     <PackageReference Include="Xamarin.AndroidX.Media">
       <Version>1.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.ViewPager2">
+      <Version>1.0.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Auth">
       <Version>60.1142.1</Version>
@@ -473,7 +484,60 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_winScreen.xml">
+    <AndroidResource Include="Resources\layout\levelCard_item.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_progress.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_leaderboard.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\leaderboard_item.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\rounded_dialog.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\winScreen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\card_grid_item.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_levels.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\skylineBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\pager_card_container.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\level_card.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\rounded_card_bg.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

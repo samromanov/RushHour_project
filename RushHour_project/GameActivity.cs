@@ -130,7 +130,7 @@ namespace RushHour_project
 
 
             //Board set up
-            _boardGrid.Adapter = new BoardAdapter(this, cloned_chosenLevel.board, cloned_chosenLevel.cars);
+            _boardGrid.Adapter = new BoardAdapter(this, cloned_chosenLevel.board, cloned_chosenLevel.cars, "game");
             _boardGrid.Touch += BoardGrid_Touch;
 
             //button clicks implementations
@@ -310,7 +310,7 @@ namespace RushHour_project
             SetMoveCounter(moveCount);
 
             // Update the board UI
-            _boardGrid.Adapter = new BoardAdapter(this, cloned_chosenLevel.board, cloned_chosenLevel.cars);
+            _boardGrid.Adapter = new BoardAdapter(this, cloned_chosenLevel.board, cloned_chosenLevel.cars, "game");
             (_boardGrid.Adapter as BoardAdapter).NotifyDataSetChanged();
         }
         private void _game_backBtn_Click(object sender, EventArgs e)
@@ -324,7 +324,7 @@ namespace RushHour_project
         /// </summary>
         public override void OnBackPressed()
         {
-            Intent intent = new Intent(this, typeof(LevelsPageActivity));
+            Intent intent = new Intent(this, typeof(LevelSelectionActivity));
             intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
             StartActivity(intent);
             Finish();
@@ -432,7 +432,7 @@ namespace RushHour_project
                     if (cloned_chosenLevel.IsWin() == true)
                     {
                         var winDialog = new Dialog(this);
-                        winDialog.SetContentView(Resource.Layout.activity_winScreen);
+                        winDialog.SetContentView(Resource.Layout.winScreen);
 
                         var editor = Application.Context.GetSharedPreferences("currentUserFile", FileCreationMode.Private).Edit();
                         if (isLoggedIn == true)

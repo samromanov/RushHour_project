@@ -925,6 +925,28 @@
           "buildTransitive/monoandroid90/Xamarin.AndroidX.ViewPager.targets": {}
         }
       },
+      "Xamarin.AndroidX.ViewPager2/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0",
+          "Xamarin.AndroidX.Collection": "1.1.0",
+          "Xamarin.AndroidX.Core": "1.1.0",
+          "Xamarin.AndroidX.Fragment": "1.1.0",
+          "Xamarin.AndroidX.RecyclerView": "1.1.0"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop"
+        ],
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.ViewPager2.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.ViewPager2.dll": {}
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.ViewPager2.targets": {}
+        }
+      },
       "Xamarin.Build.Download/0.4.9": {
         "type": "package",
         "build": {
@@ -2070,6 +2092,23 @@
         "xamarin.androidx.viewpager.nuspec"
       ]
     },
+    "Xamarin.AndroidX.ViewPager2/1.0.0": {
+      "sha512": "LVAYSWg+P6CI4lCwocZBLEEiZByJj4UybqrIsenMiyF0OOOmtYmzAnVrGcXnbJZawr9trvov6v0G9jBjAdrPKQ==",
+      "type": "package",
+      "path": "xamarin.androidx.viewpager2/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "aar/androidx.viewpager2.viewpager2.aar",
+        "build/monoandroid90/Xamarin.AndroidX.ViewPager2.targets",
+        "buildTransitive/monoandroid90/Xamarin.AndroidX.ViewPager2.targets",
+        "lib/monoandroid90/Xamarin.AndroidX.ViewPager2.dll",
+        "lib/monoandroid90/Xamarin.AndroidX.ViewPager2.pdb",
+        "xamarin.androidx.viewpager2.1.0.0.nupkg.sha512",
+        "xamarin.androidx.viewpager2.nuspec"
+      ]
+    },
     "Xamarin.Build.Download/0.4.9": {
       "sha512": "HDQzyew/2Kb8sOjbzcHtFFxLbCclln+1T8bssKx9zAs9HNuK/1mugf077A9VxzID/fFBMmBXvL/z2jUpNlgX2A==",
       "type": "package",
@@ -2311,6 +2350,7 @@
       "Newtonsoft.Json >= 13.0.3",
       "Xamarin.AndroidX.AppCompat >= 1.2.0.5",
       "Xamarin.AndroidX.Media >= 1.2.0",
+      "Xamarin.AndroidX.ViewPager2 >= 1.0.0",
       "Xamarin.Essentials >= 1.6.1",
       "Xamarin.Firebase.Auth >= 60.1142.1",
       "Xamarin.Firebase.Firestore >= 60.1142.1",
@@ -2371,6 +2411,10 @@
           "Xamarin.AndroidX.Media": {
             "target": "Package",
             "version": "[1.2.0, )"
+          },
+          "Xamarin.AndroidX.ViewPager2": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           },
           "Xamarin.Essentials": {
             "target": "Package",

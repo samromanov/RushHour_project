@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using RushHour_project.Classes;
+using System.Linq;
 
 namespace RushHour_project
 {
@@ -113,9 +115,9 @@ namespace RushHour_project
                 DocumentSnapshot documentSnapshot = (DocumentSnapshot)await userReference.Get();
 
 
-                string regDate = "??/??/????"; // Default date if not found
+                string regDate = DateTime.Now.ToString("dd/MM/yyyy"); // Default date if not found
                 string username = "User"; // Default username if not found
-                string userRecords_json = documentSnapshot.GetString("userRecords");
+                string userRecords_json;
 
                 // Extract the regDate from the document
                 // Extract the username from the document
@@ -123,6 +125,24 @@ namespace RushHour_project
                 {
                     username = documentSnapshot.GetString("username");
                     regDate = documentSnapshot.GetString("regDate");
+                }
+                if (!documentSnapshot.Contains("userRecords")) // if the userRecords doesn't exist in the user's data base
+                {
+                    Dictionary<int, int?> userRecords = new Dictionary<int, int?>();
+                    // Initialise with nulls for 50 levels
+                    for (int i = 1; i <= 60; i++)
+                        userRecords[i] = null;
+                    userRecords_json = JsonConvert.SerializeObject(userRecords);
+                    Dictionary<string, Java.Lang.Object> updateMap = new Dictionary<string, Java.Lang.Object>
+                    {
+                        { "userRecords", new Java.Lang.String(userRecords_json) }
+                    };
+
+                    await userReference.Set(updateMap, SetOptions.Merge());
+                }
+                else //if the userRecords exist in the user's data base
+                {
+                    userRecords_json = documentSnapshot.GetString("userRecords");
                 }
 
                 // Display the welcome Toast message
@@ -244,6 +264,73 @@ namespace RushHour_project
             }
             return null;
         }
+        //public async Task<int> CountUserDoneLevels()
+        //{
+        //    try
+        //    {
+        //        // Fetch the user document from Firestore using the UID
+        //        DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(this.Uid);
+        //        DocumentSnapshot documentSnapshot = (DocumentSnapshot)await userReference.Get();
+
+        //        string userRecords_json = documentSnapshot.GetString("userRecords");
+
+        //        Dictionary<int,int?> userRecords = JsonConvert.DeserializeObject<Dictionary<int, int?>>(userRecords_json);
+        //        int levelsDoneCount = 0;
+        //        foreach (var kvp in userRecords)
+        //        {
+        //            if (kvp.Value != null)
+        //            {
+        //                levelsDoneCount++;
+        //            }
+        //        }
+        //        return levelsDoneCount;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Toast.MakeText(Application.Context, $"Error: {ex.Message}", ToastLength.Short).Show();
+        //    }
+        //    return 0;
+        //}
+        //public async Task<int> TotalPointsSum()
+        //{
+        //    try
+        //    {
+        //        // Fetch the user document from Firestore using the UID
+        //        DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(this.Uid);
+        //        DocumentSnapshot documentSnapshot = (DocumentSnapshot)await userReference.Get();
+
+        //        string userRecords_json = documentSnapshot.GetString("userRecords");
+
+        //        Dictionary<int, int?> userRecords = JsonConvert.DeserializeObject<Dictionary<int, int?>>(userRecords_json);
+        //        int totalPointsSum = 0;
+        //        foreach (var kvp in userRecords)
+        //        {
+        //            if (kvp.Value != null)
+        //            {
+        //                totalPointsSum += int.Parse(kvp.Value.ToString());
+        //            }
+        //        }
+        //        return totalPointsSum;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Toast.MakeText(Application.Context, $"Error: {ex.Message}", ToastLength.Short).Show();
+        //    }
+        //    return 0;
+        //}
+
+        public async Task<List<UserRecords>> GetSortedLeaderboard()
+        {
+            var users = await new User().GetAllUsersRecordsList();
+
+            //var sorted = users.OrderByDescending(u => u.Records.Count) // Most levels done
+            //                  .ThenBy(u => u.Records.Values.Sum(v => v ?? int.MaxValue)) // Least total steps
+            //                  .ToList();
+            var sorted = users.OrderByDescending(u => u.Points).ToList();
+
+
+            return sorted;
+        }
 
         //updates the user's records dictionary as string in the firebase database
         public async void UpdateUserRecords(Dictionary<int,int?> dict)
@@ -270,6 +357,67 @@ namespace RushHour_project
             {
                 Toast.MakeText(Application.Context, $"Error: {ex.Message}", ToastLength.Short).Show();
             }
+        }
+
+        // the function runs through every user in the users collection,
+        // get his records and name and email, and adding each user's records to a list and returns it
+        public async Task<List<UserRecords>> GetAllUsersRecordsList()
+        {
+            try
+            {
+                var usersRef = FirebaseFirestore.Instance.Collection("users");
+                var snapshot = await usersRef.Get().AsAsync<QuerySnapshot>();
+
+                List<UserRecords> allUsersRecordsList = new List<UserRecords>();
+
+                foreach (var document in snapshot.Documents)
+                {
+                    var documentData = document.Data;
+                    string uid = document.Id; // this is the document ID (the user UID)
+
+                    // For example:
+                    string email = document.Contains("email") ? document.GetString("email") : "No email found";
+                    string username = document.Contains("username") ? document.GetString("username") : "No username found";
+                    string userRecordsJson = document.Contains("userRecords") ? document.GetString("userRecords") : null;
+
+                    Dictionary<int, int?> userRecords = new Dictionary<int, int?>();
+                    if (userRecordsJson != null)
+                        userRecords = JsonConvert.DeserializeObject<Dictionary<int, int?>>(userRecordsJson);
+
+                    int doneLevelsAmount = CountUserDoneLevels(userRecords);
+                    int totalStepsSum = TotalPointsSum(userRecords);
+
+                    int points = (doneLevelsAmount * 100) - totalStepsSum;
+
+                    if (points <= 0)
+                    {
+                        points = 0;
+                    }
+
+                    UserRecords records = new UserRecords(username, email, userRecords, points);
+
+                    allUsersRecordsList.Add(records);
+
+
+                }
+                return allUsersRecordsList;
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, $"Error {ex.Message}", ToastLength.Short).Show();
+            }
+            return new List<UserRecords>();
+        }
+        public int CountUserDoneLevels(Dictionary<int, int?> records)
+        {
+            return records.Count(r => r.Value.HasValue);
+        }
+
+        public int TotalPointsSum(Dictionary<int, int?> records)
+        {
+            if (records == null || records.Count == 0)
+                return 0;
+            return records.Values.Where(v => v.HasValue).Sum(v => v.Value);
         }
     }
 }

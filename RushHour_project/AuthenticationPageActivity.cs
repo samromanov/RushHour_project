@@ -96,8 +96,10 @@ namespace RushHour_project
                             User user = new User(_auth_email.Text, _auth_password.Text);
                             if (await user.Login() == true)
                             {                              
-                                Intent homeReturnIntent = new Intent();
+                                Intent homeReturnIntent = new Intent(this,typeof(MainActivity));
                                 SetResult(Result.Ok, homeReturnIntent);
+                                homeReturnIntent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
+                                StartActivity(homeReturnIntent);
                                 Finish();
                             }
                             else
@@ -122,8 +124,10 @@ namespace RushHour_project
                                 User user = new User(_auth_username.Text, _auth_email.Text, _auth_password.Text);
                                 if (await user.Register() == true)
                                 {
-                                    Intent homeReturnIntent = new Intent();
+                                    Intent homeReturnIntent = new Intent(this, typeof(MainActivity));
                                     SetResult(Result.Ok, homeReturnIntent);
+                                    homeReturnIntent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
+                                    StartActivity(homeReturnIntent);
                                     Finish();
                                 }
                                 else

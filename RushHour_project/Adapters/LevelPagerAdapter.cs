@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using RushHour_project.Classes;
 using RushHour_project.Lists;
+using AndroidX.ViewPager2.Widget;
 
 namespace RushHour_project.Adapters
 {
@@ -57,7 +58,9 @@ namespace RushHour_project.Adapters
             return new LevelViewHolder(view);
         }
 
-        class LevelViewHolder : RecyclerView.ViewHolder
+        
+
+        public class LevelViewHolder : RecyclerView.ViewHolder
         {
             private readonly GridView _card_boardGrid;
             private readonly LinearLayout _card_levelBackground, _card_difficultyBackground;

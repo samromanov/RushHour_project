@@ -342,7 +342,7 @@ namespace RushHour_project.Lists
             new Car('C',0,4,2,false),
             new Car('D',1,1,2,false),
             new Car('E',3,3,2,false),
-            new Car('F',4,2,2,true),
+            new Car('F',4,2,2,false),
             new Car('G',4,4,2,true),
             new Car('H',5,0,2,true),
             new Car('I',5,3,2,true),

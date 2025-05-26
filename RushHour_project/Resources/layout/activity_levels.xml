@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,7 +21,7 @@
                 android:background="@drawable/backarrow"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="280dp"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
             android:gravity="center">
             <TextView
@@ -36,15 +37,36 @@
             android:layout_height="match_parent"
             android:gravity="center">
             <ImageButton
-                 android:layout_width="40dp"
-                 android:layout_height="40dp"/>
-        </LinearLayout>/>
+                android:id="@+id/changeViewBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/carousel_view"
+                android:backgroundTint="@android:color/white"/>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/levelsGridLayout"
         android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="470dp">
+        android:layout_height="match_parent"
+        android:padding="8dp">
+        <GridView
+            android:id="@+id/levelsGridView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="3"
+            android:verticalSpacing="8dp"
+            android:horizontalSpacing="8dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/levelsCarouselLayout"
+        android:visibility="visible"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/levelViewPager"
@@ -57,21 +79,21 @@
             android:paddingEnd="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"/>
+        <LinearLayout
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:textStyle="bold"
+                android:textColor="#464150"
+                android:id="@+id/selectLevelBtn"
+                android:backgroundTint="#b4cf00"
+                android:textSize="20dp"
+                android:layout_width="210dp"
+                android:layout_height="60dp"
+                android:text="select level"/>
+        </LinearLayout>
+    </LinearLayout>
 
-    </LinearLayout>
-    <LinearLayout
-        android:visibility="gone"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:textStyle="bold"
-            android:textColor="#464150"
-            android:id="@+id/selectLevelBtn"
-            android:backgroundTint="#b4cf00"
-            android:textSize="20dp"
-            android:layout_width="210dp"
-            android:layout_height="60dp"
-            android:text="select level"/>
-    </LinearLayout>
 </LinearLayout>

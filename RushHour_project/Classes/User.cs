@@ -57,7 +57,7 @@ namespace RushHour_project
         }
 
 
-        public static void SaveUserInfo_SP(string username, string email, string regDate, string userRecords_json) // saves the current user info to the SharedPreference (password not saved)
+        public static void SaveUserInfo_SP(string username, string email, string regDate, string userRecords_json, int last_level_index) // saves the current user info to the SharedPreference (password not saved)
         {
             // Get SharedPreferences Editor
             var editor = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private).Edit();
@@ -68,6 +68,7 @@ namespace RushHour_project
             editor.PutString("regDate", regDate);
             editor.PutString("userRecords", userRecords_json);
             editor.PutBoolean("isLoggedIn", true);
+            editor.PutInt("connected_last_level_index", 0);
 
             // Apply changes
             editor.Apply();
@@ -118,6 +119,8 @@ namespace RushHour_project
                 string regDate = DateTime.Now.ToString("dd/MM/yyyy"); // Default date if not found
                 string username = "User"; // Default username if not found
                 string userRecords_json;
+                int connected_last_level_index = 0;
+                //string lastLevelIndex_json;
 
                 // Extract the regDate from the document
                 // Extract the username from the document
@@ -144,11 +147,24 @@ namespace RushHour_project
                 {
                     userRecords_json = documentSnapshot.GetString("userRecords");
                 }
+                if (!documentSnapshot.Contains("connected_last_level_index"))
+                {
+                    //lastLevelIndex_json = JsonConvert.SerializeObject(connected_last_level_index);
+                    Dictionary<string, Java.Lang.Object> updateMap = new Dictionary<string, Java.Lang.Object>
+                    {
+                        { "connected_last_level_index", new Java.Lang.Integer(connected_last_level_index) }
+                    };
+                    await userReference.Set(updateMap, SetOptions.Merge());
+                }
+                else
+                {
+                    connected_last_level_index =(int)documentSnapshot.Get("connected_last_level_index");
+                }
 
                 // Display the welcome Toast message
                 Toast.MakeText(Application.Context, $"Welcome, {username}!", ToastLength.Short).Show();
 
-                User.SaveUserInfo_SP(username, this.Email, regDate, userRecords_json);
+                User.SaveUserInfo_SP(username, this.Email, regDate, userRecords_json, connected_last_level_index);
 
                 return true; 
             }
@@ -170,6 +186,7 @@ namespace RushHour_project
                     editor.PutString("email", "");
                     editor.PutString("userRecords", "");
                     editor.PutBoolean("isLoggedIn", false);
+                    editor.PutInt("connected_last_level_index", 0);
 
                     editor.Apply(); // Still doesn't return a Task, but now it's executed on a background thread
                 });
@@ -201,6 +218,7 @@ namespace RushHour_project
             try
             {
                 string registrationDate = DateTime.Now.ToString("dd/MM/yyyy"); //the date of the user's registration
+                int connected_last_level_index = 0;
 
                 Dictionary<int, int?> userRecords = new Dictionary<int, int?>();
 
@@ -215,9 +233,10 @@ namespace RushHour_project
                 userMap.Put("isAdmin", isAdmin);
                 userMap.Put("regDate", registrationDate);
                 userMap.Put("userRecords", userRecords_json);
+                userMap.Put("connected_last_level_index", connected_last_level_index);
 
                 // Save only username and email to SharedPreferences
-                User.SaveUserInfo_SP(this.Username, this.Email, registrationDate, userRecords_json);
+                User.SaveUserInfo_SP(this.Username, this.Email, registrationDate, userRecords_json, connected_last_level_index);
 
                 DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(this.firebaseAuthentication.CurrentUser.Uid);
                 await userReference.Set(userMap);
@@ -387,7 +406,7 @@ namespace RushHour_project
                     int doneLevelsAmount = CountUserDoneLevels(userRecords);
                     int totalStepsSum = TotalPointsSum(userRecords);
 
-                    int points = (doneLevelsAmount * 100) - totalStepsSum;
+                    int points = (doneLevelsAmount * 1000) - totalStepsSum;
 
                     if (points <= 0)
                     {

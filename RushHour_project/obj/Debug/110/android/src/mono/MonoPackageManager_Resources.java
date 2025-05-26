@@ -16,6 +16,7 @@ public class MonoPackageManager_Resources {
 		"Xamarin.AndroidX.Annotation.dll",
 		"Xamarin.AndroidX.AppCompat.AppCompatResources.dll",
 		"Xamarin.AndroidX.AppCompat.dll",
+		"Xamarin.AndroidX.AppCompat.Resources.dll",
 		"Xamarin.AndroidX.Arch.Core.Common.dll",
 		"Xamarin.AndroidX.Arch.Core.Runtime.dll",
 		"Xamarin.AndroidX.AsyncLayoutInflater.dll",

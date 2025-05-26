@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[1.2.0.5, )"
             },
+            "Xamarin.AndroidX.AppCompat.Resources": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
             "Xamarin.AndroidX.Media": {
               "target": "Package",
               "version": "[1.2.0, )"
@@ -74,7 +78,7 @@
             },
             "Xamarin.Google.Android.Material": {
               "target": "Package",
-              "version": "[1.0.0.1, )"
+              "version": "[1.0.0, )"
             },
             "Xamarin.Google.Guava": {
               "target": "Package",

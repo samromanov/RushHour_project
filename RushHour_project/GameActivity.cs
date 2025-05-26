@@ -336,6 +336,120 @@ namespace RushHour_project
             StartActivity(intent);
             Finish(); // finish the current activity
         }
+        void ShowWinDialog(int score, bool isLastLevel)
+        {
+            Dialog dialog = new Dialog(this);
+            dialog.SetContentView(Resource.Layout.winScreen);
+            dialog.SetCancelable(false); // Makes it non-dismissible
+
+            ImageView _star1 = dialog.FindViewById<ImageView>(Resource.Id.win_star1);
+            ImageView _star2 = dialog.FindViewById<ImageView>(Resource.Id.win_star2);
+            ImageView _star3 = dialog.FindViewById<ImageView>(Resource.Id.win_star3);
+            TextView _points = dialog.FindViewById<TextView>(Resource.Id.win_points);
+            TextView _scoreStatus = dialog.FindViewById<TextView>(Resource.Id.win_pointsStatus);
+            ImageButton _backBtn = dialog.FindViewById<ImageButton>(Resource.Id.win_backBtn);
+            ImageButton _retryBtn = dialog.FindViewById<ImageButton>(Resource.Id.win_retryBtn);
+            ImageButton _nextBtn = dialog.FindViewById<ImageButton>(Resource.Id.win_nextBtn);
+
+
+            // STARS HENDLING
+            if (score >= 0 && score < 750) // one star
+            {
+                _star1.SetBackgroundResource(Android.Resource.Drawable.ButtonStarBigOn);
+                _star2.SetBackgroundResource(Android.Resource.Drawable.ButtonStarBigOff);
+                _star3.SetBackgroundResource(Android.Resource.Drawable.ButtonStarBigOff);
+            }
+            else if (score >= 750 && score < 950) // two stars
+            {
+                _star1.SetBackgroundResource(Android.Resource.Drawable.ButtonStarBigOn);
+                _star2.SetBackgroundResource(Android.Resource.Drawable.ButtonStarBigOn);
+                _star3.SetBackgroundResource(Android.Resource.Drawable.ButtonStarBigOff);
+            }
+            else if (score >= 950 && score <1000) // three stars
+            {
+                _star1.SetBackgroundResource(Android.Resource.Drawable.ButtonStarBigOn);
+                _star2.SetBackgroundResource(Android.Resource.Drawable.ButtonStarBigOn);
+                _star3.SetBackgroundResource(Android.Resource.Drawable.ButtonStarBigOn);
+            }
+
+            // POINTS HANDLING
+            var editor = Application.Context.GetSharedPreferences("currentUserFile", FileCreationMode.Private).Edit();
+            _points.Text = $"{score} POINTS";
+
+            if (isLoggedIn == true)
+            {
+                User user = new User(_email);
+                if (connectedUserRecords != null && connectedUserRecords.ContainsKey(CHOSEN_LEVEL))
+                {
+                    if (connectedUserRecords[CHOSEN_LEVEL] == null || moveCount < connectedUserRecords[CHOSEN_LEVEL])
+                    {
+                        connectedUserRecords[CHOSEN_LEVEL] = moveCount;
+                        _scoreStatus.Text = "New Highscore!";
+                    }
+                    else
+                    {
+                        _scoreStatus.Text = $"Best {(1000-connectedUserRecords[CHOSEN_LEVEL])} ({connectedUserRecords[CHOSEN_LEVEL]} steps)";
+                    }
+                }
+                string userRecords_json = JsonConvert.SerializeObject(connectedUserRecords);
+
+                editor.PutString("userRecords", userRecords_json);
+
+                user.UpdateUserRecords(connectedUserRecords);
+            }
+            else // isLoggedIn == false
+            {
+                if (localUserRecords != null && localUserRecords.ContainsKey(CHOSEN_LEVEL))
+                {
+                    if (localUserRecords[CHOSEN_LEVEL] == null || moveCount < localUserRecords[CHOSEN_LEVEL])
+                    {
+                        localUserRecords[CHOSEN_LEVEL] = moveCount;
+                        _scoreStatus.Text = "New Highscore!";
+                    }
+                    else
+                    {
+                        _scoreStatus.Text = $"Best {(1000 - localUserRecords[CHOSEN_LEVEL])} ({localUserRecords[CHOSEN_LEVEL]} steps)";
+                    }
+                }
+                string userRecords_json = JsonConvert.SerializeObject(localUserRecords);
+                editor.PutString("localUserRecords", userRecords_json);
+
+            }
+            editor.Apply();
+
+            // Disable "Next Level" if it's the last
+            if (isLastLevel)
+                _nextBtn.Enabled = false;
+
+            _nextBtn.Click += (s, e) =>
+            {
+                dialog.Dismiss();
+                Intent nextLevelIntent = new Intent(this, typeof(GameActivity));
+                nextLevelIntent.PutExtra("chosenLevel", (CHOSEN_LEVEL + 1).ToString());
+                StartActivity(nextLevelIntent);
+                Finish();
+            };
+
+            _retryBtn.Click += (s, e) =>
+            {
+                dialog.Dismiss();
+                Intent retryIntent = new Intent(this, typeof(GameActivity));
+                retryIntent.PutExtra("chosenLevel", CHOSEN_LEVEL.ToString());
+                StartActivity(retryIntent);
+                Finish();
+
+            };
+
+            _backBtn.Click += (s, e) =>
+            {
+                dialog.Dismiss();
+                Intent goHomeIntent = new Intent(this, typeof(LevelSelectionActivity));
+                StartActivity(goHomeIntent);
+                Finish();
+            };
+
+            dialog.Show();
+        }
 
         private void BoardGrid_Touch(object sender, View.TouchEventArgs e)
         {
@@ -431,43 +545,10 @@ namespace RushHour_project
 
                     if (cloned_chosenLevel.IsWin() == true)
                     {
-                        var winDialog = new Dialog(this);
-                        winDialog.SetContentView(Resource.Layout.winScreen);
-
-                        var editor = Application.Context.GetSharedPreferences("currentUserFile", FileCreationMode.Private).Edit();
-                        if (isLoggedIn == true)
-                        {
-
-                            User user = new User(_email);
-                            if (connectedUserRecords != null && connectedUserRecords.ContainsKey(CHOSEN_LEVEL)) 
-                            {
-                                if (connectedUserRecords[CHOSEN_LEVEL] == null || moveCount < connectedUserRecords[CHOSEN_LEVEL])
-                                {
-                                    connectedUserRecords[CHOSEN_LEVEL] = moveCount;
-                                }
-                            }                            
-                            string userRecords_json = JsonConvert.SerializeObject(connectedUserRecords);
-
-                            editor.PutString("userRecords", userRecords_json);
-
-                            user.UpdateUserRecords(connectedUserRecords);
-                        }
-                        else // isLoggedIn == false
-                        {
-                            if (localUserRecords != null && localUserRecords.ContainsKey(CHOSEN_LEVEL))
-                            {
-                                if (localUserRecords[CHOSEN_LEVEL] == null || moveCount < localUserRecords[CHOSEN_LEVEL])
-                                {
-                                    localUserRecords[CHOSEN_LEVEL] = moveCount;
-                                }
-                            }
-                            string userRecords_json = JsonConvert.SerializeObject(localUserRecords);
-                            editor.PutString("localUserRecords", userRecords_json);
-
-                        }
-                        editor.Apply();
-
-                        winDialog.Show();
+                        // OPEN WIN STATEMENT DIALOG
+                        int score = 1000 - moveCount;
+                        bool isLastLevel = (CHOSEN_LEVEL == 60);
+                        ShowWinDialog(score, isLastLevel);
                     }
                     break;
             }

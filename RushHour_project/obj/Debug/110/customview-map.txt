@@ -1,6 +1,7 @@
 adaptive-icon;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher.xml
 adaptive-icon;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher_round.xml
 androidx.cardview.widget.CardView;obj\Debug\110\res\layout\level_card.xml
+androidx.cardview.widget.CardView;obj\Debug\110\res\layout\levels_grid_item.xml
 androidx.viewpager2.widget.ViewPager2;obj\Debug\110\res\layout\activity_levels.xml
 background;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher.xml
 background;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher_round.xml
@@ -10,7 +11,7 @@ Button;obj\Debug\110\res\layout\activity_main.xml
 Button;obj\Debug\110\res\layout\activity_profile.xml
 Button;obj\Debug\110\res\layout\authentication_page.xml
 Button;obj\Debug\110\res\layout\individual_level.xml
-cache-path;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\42\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+cache-path;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\43\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 color;obj\Debug\110\res\values\colors.xml
 color;obj\Debug\110\res\values\ic_launcher_background.xml
 corners;obj\Debug\110\res\drawable\gradient_button1.xml
@@ -20,8 +21,8 @@ corners;obj\Debug\110\res\drawable\rounded_card_bg.xml
 corners;obj\Debug\110\res\drawable\rounded_dialog.xml
 corners;obj\Debug\110\res\drawable\rounded_edittext.xml
 EditText;obj\Debug\110\res\layout\authentication_page.xml
-external-cache-path;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\42\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
-external-path;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\42\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+external-cache-path;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\43\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+external-path;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\43\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 foreground;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher.xml
 foreground;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher_round.xml
 FrameLayout;obj\Debug\110\res\layout\activity_game.xml
@@ -32,15 +33,20 @@ gradient;obj\Debug\110\res\drawable\gradient_background.xml
 gradient;obj\Debug\110\res\drawable\gradient_button1.xml
 gradient;obj\Debug\110\res\drawable\gradient_gray.xml
 GridView;obj\Debug\110\res\layout\activity_game.xml
+GridView;obj\Debug\110\res\layout\activity_levels.xml
+GridView;obj\Debug\110\res\layout\fragment_difficultytabs.xml
 GridView;obj\Debug\110\res\layout\level_card.xml
 ImageButton;obj\Debug\110\res\layout\activity_leaderboard.xml
 ImageButton;obj\Debug\110\res\layout\activity_levels.xml
 ImageButton;obj\Debug\110\res\layout\activity_profile.xml
 ImageButton;obj\Debug\110\res\layout\authentication_page.xml
+ImageButton;obj\Debug\110\res\layout\winscreen.xml
 ImageView;obj\Debug\110\res\layout\activity_main.xml
 ImageView;obj\Debug\110\res\layout\activity_splash.xml
 ImageView;obj\Debug\110\res\layout\authentication_page.xml
 ImageView;obj\Debug\110\res\layout\level_card.xml
+ImageView;obj\Debug\110\res\layout\levels_grid_item.xml
+ImageView;obj\Debug\110\res\layout\winscreen.xml
 include;obj\Debug\110\res\layout\pager_card_container.xml
 item;obj\Debug\110\res\drawable\gradient_button1.xml
 item;obj\Debug\110\res\values\styles.xml
@@ -53,10 +59,12 @@ LinearLayout;obj\Debug\110\res\layout\activity_progress.xml
 LinearLayout;obj\Debug\110\res\layout\activity_settings.xml
 LinearLayout;obj\Debug\110\res\layout\activity_splash.xml
 LinearLayout;obj\Debug\110\res\layout\authentication_page.xml
+LinearLayout;obj\Debug\110\res\layout\fragment_difficultytabs.xml
 LinearLayout;obj\Debug\110\res\layout\individual_level.xml
 LinearLayout;obj\Debug\110\res\layout\leaderboard_item.xml
 LinearLayout;obj\Debug\110\res\layout\level_card.xml
 LinearLayout;obj\Debug\110\res\layout\levelcard_item.xml
+LinearLayout;obj\Debug\110\res\layout\levels_grid_item.xml
 LinearLayout;obj\Debug\110\res\layout\levels_page.xml
 LinearLayout;obj\Debug\110\res\layout\statistics_page.xml
 LinearLayout;obj\Debug\110\res\layout\winscreen.xml
@@ -65,7 +73,7 @@ ListView;obj\Debug\110\res\layout\levels_page.xml
 padding;obj\Debug\110\res\drawable\gradient_button1.xml
 padding;obj\Debug\110\res\drawable\rounded_dialog.xml
 padding;obj\Debug\110\res\drawable\rounded_edittext.xml
-paths;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\42\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+paths;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\43\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 resources;obj\Debug\110\res\values\colors.xml
 resources;obj\Debug\110\res\values\ic_launcher_background.xml
 resources;obj\Debug\110\res\values\strings.xml
@@ -96,5 +104,6 @@ TextView;obj\Debug\110\res\layout\activity_settings.xml
 TextView;obj\Debug\110\res\layout\authentication_page.xml
 TextView;obj\Debug\110\res\layout\leaderboard_item.xml
 TextView;obj\Debug\110\res\layout\level_card.xml
+TextView;obj\Debug\110\res\layout\levels_grid_item.xml
 TextView;obj\Debug\110\res\layout\winscreen.xml
 View;obj\Debug\110\res\layout\activity_game.xml

@@ -64,7 +64,7 @@ namespace RushHour_project.Adapters
                 }
                 else
                 {
-                    builder.AppendLine($"Level {record.Key}: none/empty");
+                    builder.AppendLine($"Level {record.Key}: not completed");
 
                 }
             }

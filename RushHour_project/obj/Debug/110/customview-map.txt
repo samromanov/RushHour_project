@@ -1,5 +1,6 @@
 adaptive-icon;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher.xml
 adaptive-icon;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher_round.xml
+adaptive-icon;obj\Debug\110\res\mipmap-anydpi-v26\ic_rushhour.xml
 androidx.cardview.widget.CardView;obj\Debug\110\res\layout\level_card.xml
 androidx.cardview.widget.CardView;obj\Debug\110\res\layout\levels_grid_item.xml
 androidx.viewpager2.widget.ViewPager2;obj\Debug\110\res\layout\activity_levels.xml
@@ -20,11 +21,13 @@ corners;obj\Debug\110\res\drawable\rounded_background.xml
 corners;obj\Debug\110\res\drawable\rounded_card_bg.xml
 corners;obj\Debug\110\res\drawable\rounded_dialog.xml
 corners;obj\Debug\110\res\drawable\rounded_edittext.xml
+EditText;obj\Debug\110\res\layout\activity_progress.xml
 EditText;obj\Debug\110\res\layout\authentication_page.xml
 external-cache-path;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\43\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 external-path;C:\Users\timov\source\repos\RushHour_project\RushHour_project\obj\Debug\110\lp\43\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 foreground;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher.xml
 foreground;obj\Debug\110\res\mipmap-anydpi-v26\ic_launcher_round.xml
+foreground;obj\Debug\110\res\mipmap-anydpi-v26\ic_rushhour.xml
 FrameLayout;obj\Debug\110\res\layout\activity_game.xml
 FrameLayout;obj\Debug\110\res\layout\card_grid_item.xml
 FrameLayout;obj\Debug\110\res\layout\grid_item.xml
@@ -39,6 +42,7 @@ GridView;obj\Debug\110\res\layout\level_card.xml
 ImageButton;obj\Debug\110\res\layout\activity_leaderboard.xml
 ImageButton;obj\Debug\110\res\layout\activity_levels.xml
 ImageButton;obj\Debug\110\res\layout\activity_profile.xml
+ImageButton;obj\Debug\110\res\layout\activity_progress.xml
 ImageButton;obj\Debug\110\res\layout\authentication_page.xml
 ImageButton;obj\Debug\110\res\layout\winscreen.xml
 ImageView;obj\Debug\110\res\layout\activity_main.xml
@@ -78,6 +82,7 @@ resources;obj\Debug\110\res\values\colors.xml
 resources;obj\Debug\110\res\values\ic_launcher_background.xml
 resources;obj\Debug\110\res\values\strings.xml
 resources;obj\Debug\110\res\values\styles.xml
+ScrollView;obj\Debug\110\res\layout\activity_progress.xml
 selector;obj\Debug\110\res\drawable\gradient_button1.xml
 shape;obj\Debug\110\res\drawable\gradient_background.xml
 shape;obj\Debug\110\res\drawable\gradient_button1.xml
@@ -100,6 +105,7 @@ TextView;obj\Debug\110\res\layout\activity_game.xml
 TextView;obj\Debug\110\res\layout\activity_leaderboard.xml
 TextView;obj\Debug\110\res\layout\activity_levels.xml
 TextView;obj\Debug\110\res\layout\activity_profile.xml
+TextView;obj\Debug\110\res\layout\activity_progress.xml
 TextView;obj\Debug\110\res\layout\activity_settings.xml
 TextView;obj\Debug\110\res\layout\authentication_page.xml
 TextView;obj\Debug\110\res\layout\leaderboard_item.xml

@@ -1,0 +1,1 @@
+<FrameLayout android:id="@+id/card_cell_item" android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/emptywhitecell" xmlns:android="http://schemas.android.com/apk/res/android" />

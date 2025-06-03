@@ -24,6 +24,8 @@ namespace RushHour_project
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
+            SupportActionBar?.Hide(); //hiding the action bar in the top
+
             Init();
         }
         void Init()

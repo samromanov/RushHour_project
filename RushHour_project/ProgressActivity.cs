@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
+using RushHour_project.Sounds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,6 +76,7 @@ namespace RushHour_project
 
         private void _progress_backBtn_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             Finish();
         }
     }

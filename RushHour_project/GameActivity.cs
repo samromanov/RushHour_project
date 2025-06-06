@@ -13,6 +13,7 @@ using RushHour_project.Adapters;
 using RushHour_project.Lists;
 using Newtonsoft.Json;
 using Firebase.Auth;
+using RushHour_project.Sounds;
 
 namespace RushHour_project
 {
@@ -61,10 +62,19 @@ namespace RushHour_project
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            var intent = new Intent(this, typeof(MusicService));
+            intent.PutExtra("MusicResId", Resource.Raw.gameplayJazz);
+            StartService(intent);
             // Create your application here
             SetContentView(Resource.Layout.activity_game);
             Init();
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+            var intent = new Intent(this, typeof(MusicService));
+            intent.PutExtra("MusicResId", Resource.Raw.gameplayJazz);
+            StartService(intent);
         }
         public void Init()
         {
@@ -225,6 +235,7 @@ namespace RushHour_project
         //opens the next level (if the current is not the last)
         private void NextLevelBtn_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             if (CHOSEN_LEVEL == 60)
             {
                 Toast.MakeText(this, "This is the last level!", ToastLength.Short).Show();
@@ -253,6 +264,7 @@ namespace RushHour_project
         //opens the previous level (if the current is not the first)
         private void _lastLevelBtn_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             if (CHOSEN_LEVEL == 1)
             {
                 Toast.MakeText(this, "This is the first level!", ToastLength.Short).Show();
@@ -294,6 +306,7 @@ namespace RushHour_project
         }
         private void _resetBtn_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             ResetBoard();
         }
 
@@ -315,6 +328,7 @@ namespace RushHour_project
         }
         private void _game_backBtn_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             OnBackPressed();
         }
 
@@ -331,6 +345,7 @@ namespace RushHour_project
         }
         private void _game_homeBtn_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             Intent intent = new Intent(this, typeof(MainActivity));
             intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
             StartActivity(intent);
@@ -338,6 +353,9 @@ namespace RushHour_project
         }
         void ShowWinDialog(int score, bool isLastLevel)
         {
+            MusicService.StopMusic();
+            SoundEffectManager.Init(this);
+            SoundEffectManager.Play("win");
             Dialog dialog = new Dialog(this);
             dialog.SetContentView(Resource.Layout.winScreen);
             dialog.SetCancelable(false); // Makes it non-dismissible
@@ -423,6 +441,8 @@ namespace RushHour_project
 
             _nextBtn.Click += (s, e) =>
             {
+                SoundEffectManager.Init(this);
+                SoundEffectManager.Play("click");
                 dialog.Dismiss();
                 Intent nextLevelIntent = new Intent(this, typeof(GameActivity));
                 nextLevelIntent.PutExtra("chosenLevel", (CHOSEN_LEVEL + 1).ToString());
@@ -432,6 +452,8 @@ namespace RushHour_project
 
             _retryBtn.Click += (s, e) =>
             {
+                SoundEffectManager.Init(this);
+                SoundEffectManager.Play("click");
                 dialog.Dismiss();
                 Intent retryIntent = new Intent(this, typeof(GameActivity));
                 retryIntent.PutExtra("chosenLevel", CHOSEN_LEVEL.ToString());
@@ -442,8 +464,11 @@ namespace RushHour_project
 
             _backBtn.Click += (s, e) =>
             {
+                SoundEffectManager.Init(this);
+                SoundEffectManager.Play("click");
                 dialog.Dismiss();
                 Intent goHomeIntent = new Intent(this, typeof(LevelSelectionActivity));
+                goHomeIntent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
                 StartActivity(goHomeIntent);
                 Finish();
             };

@@ -90,5 +90,10 @@ namespace RushHour_project.Adapters
 
             return view;
         }
+        public void UpdateData(List<UserRecords> newUsers)
+        {
+            users.Clear();
+            users.AddRange(newUsers);
+        }
     }
 }

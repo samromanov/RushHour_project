@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/enhanced_background">
+    <TextView
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="LEVEL CLEARED!"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <ImageView
+            android:id="@+id/win_star1"
+            android:background="@android:drawable/btn_star_big_on"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+        <ImageView
+            android:id="@+id/win_star2"
+            android:background="@android:drawable/btn_star_big_off"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+        <ImageView
+            android:id="@+id/win_star3"
+            android:background="@android:drawable/btn_star_big_off"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <TextView
+            android:id="@+id/win_points"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="500 POINTS"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_orange_light"/>
+        <TextView
+            android:id="@+id/win_pointsStatus"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="20dp"
+            android:text="Best 655 / New Highscore"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:padding="8dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageButton
+            android:id="@+id/win_backBtn"
+            android:background="@drawable/menu"
+            android:backgroundTint="@android:color/holo_orange_light"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <ImageButton
+            android:id="@+id/win_retryBtn"
+            android:background="@drawable/retry"
+            android:backgroundTint="@android:color/holo_orange_light"
+            android:layout_marginLeft="35dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <ImageButton
+            android:id="@+id/win_nextBtn"
+            android:background="@drawable/next"
+            android:backgroundTint="@android:color/holo_orange_light"
+            android:layout_marginLeft="35dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+</LinearLayout>
+
+

@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using RushHour_project.Sounds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,12 +69,14 @@ namespace RushHour_project
 
         private void _auth_backBtn_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             SetResult(Result.Canceled);
             Finish();
         }
 
         private async void LoginSignupBtn_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             if (_auth_email.Text == "" || _auth_password.Text == "")
             {
                 Toast.MakeText(this, "Empty fields detected!", ToastLength.Short).Show();
@@ -148,6 +151,7 @@ namespace RushHour_project
 
         private void SwitchAuthenticationMethod_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             switch (isLogin)
             {
                 case true: // ---in case it's a login page---

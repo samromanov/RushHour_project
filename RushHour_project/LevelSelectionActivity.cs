@@ -14,6 +14,7 @@ using RushHour_project.Lists;
 using RushHour_project.Classes;
 using AndroidX.RecyclerView.Widget;
 using static RushHour_project.Adapters.LevelPagerAdapter;
+using RushHour_project.Sounds;
 
 namespace RushHour_project
 {
@@ -33,6 +34,13 @@ namespace RushHour_project
             // Create your application here
             SetContentView(Resource.Layout.activity_levels);
             Init();
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+            var intent = new Intent(this, typeof(MusicService));
+            intent.PutExtra("MusicResId", Resource.Raw.general);
+            StartService(intent);
         }
         public void Init()
         {
@@ -96,7 +104,8 @@ namespace RushHour_project
 
             adapter.OnLevelClicked += level =>
             {
-
+                SoundEffectManager.Play("click");
+                MusicService.StopMusic();
                 Intent game_intent = new Intent(this, typeof(GameActivity));
                 string stringLevelNum = level.levelNumber.ToString();
                 game_intent.PutExtra("chosenLevel", stringLevelNum);
@@ -105,6 +114,8 @@ namespace RushHour_project
             // Handle item clicks
             _levelsGridView.ItemClick += (sender, e) =>
             {
+                SoundEffectManager.Play("click");
+                MusicService.StopMusic();
                 var clickedLevel = LevelsList.Clone()[e.Position];
                 Intent game_intent = new Intent(this, typeof(GameActivity));
                 string stringLevelNum = clickedLevel.levelNumber.ToString();
@@ -115,6 +126,7 @@ namespace RushHour_project
 
         private void _changeViewBtn_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             if (isGridView == true) // it was a grid view - needs to change to carousel view
             {
                 _levelsGridLayout.Visibility = ViewStates.Gone;
@@ -140,6 +152,7 @@ namespace RushHour_project
 
         private void _levels_backBtn_Click(object sender, EventArgs e)
         {
+            SoundEffectManager.Play("click");
             Finish();
         }
     }

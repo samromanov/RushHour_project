@@ -5,6 +5,8 @@ using Android.Runtime;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using Newtonsoft.Json;
+using RushHour_project.Classes;
+using RushHour_project.Sounds;
 using System.Collections.Generic;
 
 namespace RushHour_project
@@ -20,6 +22,9 @@ namespace RushHour_project
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            var intent = new Intent(this, typeof(MusicService));
+            intent.PutExtra("MusicResId", Resource.Raw.general);
+            StartService(intent);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
@@ -63,24 +68,32 @@ namespace RushHour_project
 
         private void _leaderboardBtn_Click(object sender, System.EventArgs e)
         {
+            SoundEffectManager.Init(this);
+            SoundEffectManager.Play("click");
             Intent intent = new Intent(this, typeof(LeaderboardActivity));
             StartActivity(intent);
         }
 
         private void _progressBtn_Click(object sender, System.EventArgs e)
         {
+            SoundEffectManager.Init(this);
+            SoundEffectManager.Play("click");
             Intent intent = new Intent(this, typeof(ProgressActivity));
             StartActivity(intent);
         }
 
         private void SettingsBtn_Click(object sender, System.EventArgs e)
         {
+            SoundEffectManager.Init(this);
+            SoundEffectManager.Play("click");
             Intent intent = new Intent(this, typeof(SettingsActivity));
             StartActivity(intent);
         }
 
         private void LoginProfileBtn_Click(object sender, System.EventArgs e)
         {
+            SoundEffectManager.Init(this);
+            SoundEffectManager.Play("click");
             if (isLoggedIn == false) 
             {
                 Intent intent = new Intent(this, typeof(AuthenticationPageActivity));
@@ -95,6 +108,8 @@ namespace RushHour_project
 
         private void PlayBtn_Click(object sender, System.EventArgs e)
         {
+            SoundEffectManager.Init(this);
+            SoundEffectManager.Play("click");
             Intent intent = new Intent(this, typeof(LevelSelectionActivity));
             StartActivity(intent);
         }
@@ -116,6 +131,14 @@ namespace RushHour_project
                     _loginProfileBtn.Text = "Login";
                 }
             }
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            var intent = new Intent(this, typeof(MusicService));
+            intent.PutExtra("MusicResId", Resource.Raw.general);
+            StartService(intent);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "554536099551",
+    "project_id": "rushhour-project",
+    "storage_bucket": "rushhour-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554536099551:android:87ffdfb89ec9e0e133d36a",
+        "android_client_info": {
+          "package_name": "com.companyname.rushhour_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzPEG7-zrvqGT1P-3HYe7j2OxKLeR-cds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -61,7 +61,7 @@ namespace RushHour_project
         }
 
 
-        public static void SaveUserInfo_SP(string username, string email, string regDate, string userRecords_json, int last_level_index) // saves the current user info to the SharedPreference (password not saved)
+        public static void SaveUserInfo_SP(string username, string email, string regDate, string userRecords_json, int last_level_index, bool isAdmin) // saves the current user info to the SharedPreference (password not saved)
         {
             // Get SharedPreferences Editor
             var editor = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private).Edit();
@@ -72,7 +72,8 @@ namespace RushHour_project
             editor.PutString("regDate", regDate);
             editor.PutString("userRecords", userRecords_json);
             editor.PutBoolean("isLoggedIn", true);
-            editor.PutInt("connected_last_level_index", 0);
+            editor.PutInt("connected_last_level_index", last_level_index);
+            editor.PutBoolean("isAdmin", isAdmin);
 
             // Apply changes
             editor.Apply();
@@ -124,6 +125,7 @@ namespace RushHour_project
                 string username = "User"; // Default username if not found
                 string userRecords_json;
                 int connected_last_level_index = 0;
+                bool isAdmin = false;
                 //string lastLevelIndex_json;
 
                 // Extract the regDate from the document
@@ -149,7 +151,7 @@ namespace RushHour_project
                 }
                 else //if the userRecords exist in the user's data base
                 {
-                    userRecords_json = documentSnapshot.GetString("userRecords");
+                    userRecords_json = documentSnapshot.GetString("userRecords"); // get the userRecords_json from the user
                 }
                 if (!documentSnapshot.Contains("connected_last_level_index"))
                 {
@@ -162,13 +164,25 @@ namespace RushHour_project
                 }
                 else
                 {
-                    connected_last_level_index =(int)documentSnapshot.Get("connected_last_level_index");
+                    connected_last_level_index =(int)documentSnapshot.Get("connected_last_level_index"); // get the connected_last_level_index from the user
+                }
+                if (!documentSnapshot.Contains("isAdmin"))
+                {
+                    Dictionary<string, Java.Lang.Object> updateMap = new Dictionary<string, Java.Lang.Object>
+                    {
+                        { "isAdmin", new Java.Lang.Boolean(isAdmin) }
+                    };
+                    await userReference.Set(updateMap, SetOptions.Merge());
+                }
+                else
+                {
+                    isAdmin = (bool)documentSnapshot.GetBoolean("isAdmin"); // get the isAdmin from the user
                 }
 
                 // Display the welcome Toast message
                 Toast.MakeText(Application.Context, $"Welcome, {username}!", ToastLength.Short).Show();
 
-                User.SaveUserInfo_SP(username, this.Email, regDate, userRecords_json, connected_last_level_index);
+                User.SaveUserInfo_SP(username, this.Email, regDate, userRecords_json, connected_last_level_index, isAdmin);
 
                 return true; 
             }
@@ -191,6 +205,7 @@ namespace RushHour_project
                     editor.PutString("userRecords", "");
                     editor.PutBoolean("isLoggedIn", false);
                     editor.PutInt("connected_last_level_index", 0);
+                    editor.PutBoolean("isAdmin", false);
 
                     editor.Apply(); // Still doesn't return a Task, but now it's executed on a background thread
                 });
@@ -240,7 +255,7 @@ namespace RushHour_project
                 userMap.Put("connected_last_level_index", connected_last_level_index);
 
                 // Save only username and email to SharedPreferences
-                User.SaveUserInfo_SP(this.Username, this.Email, registrationDate, userRecords_json, connected_last_level_index);
+                User.SaveUserInfo_SP(this.Username, this.Email, registrationDate, userRecords_json, connected_last_level_index, isAdmin);
 
                 DocumentReference userReference = this.database.Collection(USERS_COLLECTION).Document(this.firebaseAuthentication.CurrentUser.Uid);
                 await userReference.Set(userMap);

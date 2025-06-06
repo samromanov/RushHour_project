@@ -71,7 +71,6 @@
         <Button
             android:textStyle="bold"
             android:id="@+id/loginRegisterBtn"
-            app:cornerRadius="25dp"
             android:backgroundTint="@android:color/holo_green_dark"
             android:textAllCaps="false"
             android:text="Login"

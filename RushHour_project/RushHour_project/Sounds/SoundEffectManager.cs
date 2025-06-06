@@ -37,7 +37,7 @@ namespace RushHour_project.Sounds
         public static void Play(string key)
         {
             if (isLoaded && soundMap.ContainsKey(key))
-                soundPool.Play(soundMap[key], 1, 1, 1, 0, 1f);
+                soundPool.Play(soundMap[key], 1.0f, 1.0f, 1, 0, 1f);
         }
 
         private class SoundPoolLoadListener : Java.Lang.Object, SoundPool.IOnLoadCompleteListener

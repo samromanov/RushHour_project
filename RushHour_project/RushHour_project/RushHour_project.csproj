@@ -55,6 +55,7 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <AndroidKeyStore>true</AndroidKeyStore>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -94,7 +95,7 @@
     <Compile Include="ProgressActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\MusicService.cs" />
+    <Compile Include="Sounds\MusicService.cs" />
     <Compile Include="SettingsActivity.cs" />
     <Compile Include="Sounds\MyApp.cs" />
     <Compile Include="Sounds\SoundEffectManager.cs" />
@@ -642,6 +643,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\raw\btnClick.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\menu_profile.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\dots.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

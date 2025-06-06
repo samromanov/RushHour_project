@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\timov\\source\\repos\\RushHour_project\\RushHour_project\\RushHour_project.csproj": {}
+    "E:\\Documents\\FinalProject_2025\\Samikkk\\RushHour_proj\\RushHour_project\\RushHour_project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\timov\\source\\repos\\RushHour_project\\RushHour_project\\RushHour_project.csproj": {
+    "E:\\Documents\\FinalProject_2025\\Samikkk\\RushHour_proj\\RushHour_project\\RushHour_project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\timov\\source\\repos\\RushHour_project\\RushHour_project\\RushHour_project.csproj",
+        "projectUniqueName": "E:\\Documents\\FinalProject_2025\\Samikkk\\RushHour_proj\\RushHour_project\\RushHour_project.csproj",
         "projectName": "RushHour_project",
-        "projectPath": "C:\\Users\\timov\\source\\repos\\RushHour_project\\RushHour_project\\RushHour_project.csproj",
-        "packagesPath": "C:\\Users\\timov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\timov\\source\\repos\\RushHour_project\\RushHour_project\\obj\\",
+        "projectPath": "E:\\Documents\\FinalProject_2025\\Samikkk\\RushHour_proj\\RushHour_project\\RushHour_project.csproj",
+        "packagesPath": "C:\\Users\\Sam\\.nuget\\packages\\",
+        "outputPath": "E:\\Documents\\FinalProject_2025\\Samikkk\\RushHour_proj\\RushHour_project\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\timov\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Sam\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Documents\\FinalProject_2025\\Samikkk\\RushHour_proj\\RushHour_project\\RushHour_project\\RushHour_project.csproj": {}
+    "E:\\Documents\\FinalProject_2025\\Samikkk\\RUSHHOUR\\RushHour_project\\RushHour_project\\RushHour_project\\RushHour_project.csproj": {}
   },
   "projects": {
-    "E:\\Documents\\FinalProject_2025\\Samikkk\\RushHour_proj\\RushHour_project\\RushHour_project\\RushHour_project.csproj": {
+    "E:\\Documents\\FinalProject_2025\\Samikkk\\RUSHHOUR\\RushHour_project\\RushHour_project\\RushHour_project\\RushHour_project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Documents\\FinalProject_2025\\Samikkk\\RushHour_proj\\RushHour_project\\RushHour_project\\RushHour_project.csproj",
+        "projectUniqueName": "E:\\Documents\\FinalProject_2025\\Samikkk\\RUSHHOUR\\RushHour_project\\RushHour_project\\RushHour_project\\RushHour_project.csproj",
         "projectName": "RushHour_project",
-        "projectPath": "E:\\Documents\\FinalProject_2025\\Samikkk\\RushHour_proj\\RushHour_project\\RushHour_project\\RushHour_project.csproj",
+        "projectPath": "E:\\Documents\\FinalProject_2025\\Samikkk\\RUSHHOUR\\RushHour_project\\RushHour_project\\RushHour_project\\RushHour_project.csproj",
         "packagesPath": "C:\\Users\\Sam\\.nuget\\packages\\",
-        "outputPath": "E:\\Documents\\FinalProject_2025\\Samikkk\\RushHour_proj\\RushHour_project\\RushHour_project\\obj\\",
+        "outputPath": "E:\\Documents\\FinalProject_2025\\Samikkk\\RUSHHOUR\\RushHour_project\\RushHour_project\\RushHour_project\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [

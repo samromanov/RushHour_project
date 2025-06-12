@@ -282,6 +282,104 @@ namespace RushHour_project
             }
             return true;
         }
+        public async Task<bool> UpdateProfile(string newUsername, string newEmail)
+        {
+            try
+            {
+                string uid = firebaseAuthentication.CurrentUser.Uid;
+                DocumentReference userReference = database.Collection(USERS_COLLECTION).Document(uid);
+
+                Dictionary<string, Java.Lang.Object> updateMap = new Dictionary<string, Java.Lang.Object>
+                {
+                    { "username", new Java.Lang.String(newUsername) },
+                    { "email", new Java.Lang.String(newEmail) }
+                };
+
+                await userReference.Update(updateMap); // Use Update for specific fields
+
+                // Update SharedPreferences
+                ISharedPreferences prefs = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private);
+                string regDate = prefs.GetString("regDate", "not found");
+                string userRecords_json = prefs.GetString("userRecords", "");
+                int connected_last_level_index = prefs.GetInt("connected_last_level_index", 0);
+                bool isAdmin = prefs.GetBoolean("isAdmin", false);
+
+                SaveUserInfo_SP(newUsername, newEmail, regDate, userRecords_json, connected_last_level_index, isAdmin);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, $"Error updating profile: {ex.Message}", ToastLength.Short).Show();
+                return false;
+            }
+        }
+        public async Task<bool> ResetUserData()
+        {
+            try
+            {
+                string uid = firebaseAuthentication.CurrentUser.Uid;
+                DocumentReference userReference = database.Collection(USERS_COLLECTION).Document(uid);
+
+                // Reset user records
+                Dictionary<int, int?> userRecords = new Dictionary<int, int?>();
+                for (int i = 1; i <= 60; i++)
+                    userRecords[i] = null;
+                string userRecords_json = JsonConvert.SerializeObject(userRecords);
+
+                // Reset last_level_index
+                int connected_last_level_index = 0;
+
+                Dictionary<string, Java.Lang.Object> updateMap = new Dictionary<string, Java.Lang.Object>
+                {
+                    { "userRecords", new Java.Lang.String(userRecords_json) },
+                    { "connected_last_level_index", new Java.Lang.Integer(connected_last_level_index) }
+                };
+
+                await userReference.Update(updateMap);
+
+                // Update SharedPreferences
+                ISharedPreferences prefs = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private);
+                var editor = prefs.Edit();
+                editor.PutString("userRecords", userRecords_json);
+                editor.PutInt("connected_last_level_index", connected_last_level_index);
+                editor.Apply();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, $"Error resetting user data: {ex.Message}", ToastLength.Short).Show();
+                return false;
+            }
+        }
+        public async Task<bool> DeleteAccount()
+        {
+            try
+            {
+                string uid = firebaseAuthentication.CurrentUser.Uid;
+
+                // 1. Delete user document from Firestore
+                DocumentReference userReference = database.Collection(USERS_COLLECTION).Document(uid);
+                await userReference.Delete();
+
+                // 2. Delete user from Firebase Authentication
+                await firebaseAuthentication.CurrentUser.Delete();
+
+                // 3. Clear SharedPreferences
+                var editor = Application.Context.GetSharedPreferences(CURRENT_USER_FILE, FileCreationMode.Private).Edit();
+                editor.Clear(); // Clear all user info
+                editor.Apply();
+
+                Toast.MakeText(Application.Context, "Account deleted successfully.", ToastLength.Short).Show();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, $"Error deleting account: {ex.Message}", ToastLength.Short).Show();
+                return false;
+            }
+        }
         public async Task<Dictionary<int,int?>> FetchRecordsDict()
         {
             try

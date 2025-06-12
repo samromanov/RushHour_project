@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/enhanced_background">
+    android:background="@drawable/skylinebackground">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Progress"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/holo_red_dark"
                 android:textSize="25dp"
                 android:textStyle="bold"
                 android:layout_marginRight="50dp"/>
